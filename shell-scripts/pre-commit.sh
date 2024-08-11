@@ -16,6 +16,12 @@ if [ ! -d "$SRC_DIR" ] || [ ! -d "$TEST_DIR" ]; then
     exit 1
 fi
 
+echo "Running pyclean on $SRC_DIR..."
+pyclean $SRC_DIR
+
+echo "Running pyclean on $TEST_DIR..."
+pyclean $TEST_DIR
+
 # Apply isort to sort imports
 echo "Running isort on $SRC_DIR..."
 isort $SRC_DIR
