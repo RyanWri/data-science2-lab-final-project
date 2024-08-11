@@ -8,10 +8,11 @@ fi
 
 # Directory containing the source code, including the team subdirectory with integer suffix
 SRC_DIR="src/team_$1"
+TEST_DIR="tests/team_$1"
 
 # Check if the source directory exists
-if [ ! -d "$SRC_DIR" ]; then
-    echo "The directory $SRC_DIR does not exist."
+if [ ! -d "$SRC_DIR" ] || [ ! -d "$TEST_DIR" ]; then
+    echo "The directory $SRC_DIR or $TEST_DIR does not exist."
     exit 1
 fi
 
@@ -19,8 +20,14 @@ fi
 echo "Running isort on $SRC_DIR..."
 isort $SRC_DIR
 
+echo "Running isort on $TEST_DIR..."
+isort $TEST_DIR
+
 # Apply black to format the code
 echo "Running black on $SRC_DIR..."
 black $SRC_DIR
+
+echo "Running black on $TEST_DIR..."
+black $TEST_DIR
 
 echo "Formatting complete."
