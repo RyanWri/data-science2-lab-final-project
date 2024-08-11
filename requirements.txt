@@ -1,13 +1,11 @@
-numpy
-pandas
-scikit-learn
-scipy
-matplotlib
-seaborn
-statsmodels
-requests
-tqdm
-jupyter
-tensorflow
-torch
-black
+# Core dependencies for running the application
+tensorflow<=2.13.0
+torch<=2.0.0
+numpy<=1.24.2
+pandas<=1.5.0
+matplotlib<=3.8.2
+seaborn<=0.13.0
+scikit-learn<=1.2.1
+scipy<=1.11.4
+# Include development requirements
+-r requirements-dev.txt
