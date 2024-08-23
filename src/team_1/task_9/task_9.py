@@ -103,3 +103,17 @@ class EDA:
             f"Time Series of Numerical Column {numeric_col} over Time Column {time_col}"
         )
         plt.show()
+
+    def rehospitalized_patients_data(self):
+        # Group by 'user_id' and count the number of records for each user
+        user_counts = self.df["Patient"].value_counts()
+
+        # Filter for users with at least 2 records
+        users_with_multiple_records = user_counts[user_counts >= 2].index
+
+        # Filter the original DataFrame to include only these users
+        df_rehospitalized_patients = self.df[
+            self.df["Patient"].isin(users_with_multiple_records)
+        ]
+
+        return df_rehospitalized_patients
