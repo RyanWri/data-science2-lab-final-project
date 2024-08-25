@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # Data cleaning and completion for table: general data
+import pandas as pd
 
 GeneralData = r'src\data\GeneralData.xlsx'
 Drugs = r'src\data\Drugs.xlsx'
@@ -47,5 +48,7 @@ def replace_codes_with_names(codes_str):
 # Create a new column 'DrugNames' to store the results
 df_GeneralData['DrugNames'] = df_GeneralData['תרופות קבועות'].apply(replace_codes_with_names)
 
-
+# Save the updated DataFrame to a new Excel file
+output_file_path = 'src\data\GeneralData.csv'
+df_GeneralData.to_excel(output_file_path, index=False)
 
