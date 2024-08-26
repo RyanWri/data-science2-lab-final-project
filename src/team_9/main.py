@@ -2,7 +2,7 @@
 from argparse import ArgumentParser
 from os.path import abspath, join as path_join, dirname
 
-from lib import ascii_encoded, ExecutionConfig, original_encoded, split_sheet, treat_missing_values
+from src_code import ascii_encoded, ExecutionConfig, original_encoded, split_sheet, treat_missing_values
 
 def main():
   parser = ArgumentParser(description="This is Python CLI that performs EDA tasks. Its expected input originates from rehospitalization.xlsx. The program is expected to be executed from $PROJECT_ROOT/src/team_9")
