@@ -135,7 +135,26 @@ class EDA:
             plt.tight_layout()
             plt.show()
 
+    def pie_charts_for_categorical(self):
+        """
+        Create pie charts for categorical columns in the DataFrame that have fewer than 10 unique values.
 
+        Parameters:
+        df (pd.DataFrame): The DataFrame with categorical columns.
+        """
+        # Get categorical columns with fewer than 10 unique values
+        categorical_columns = self.df.select_dtypes(include=["object", "category"]).columns
+        for col in categorical_columns:
+            if self.df[col].nunique() < 10:
+                # Count occurrences of each category
+                counts = self.df[col].value_counts()
+                
+                # Plot pie chart
+                plt.figure(figsize=(8, 8))
+                plt.pie(counts, labels=counts.index, autopct='%1.1f%%', startangle=140)
+                plt.title(f"Pie Chart of {col}")
+                plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+                plt.show()
 
     def outliers(self):
         # Boxplots for numerical columns to identify outliers
