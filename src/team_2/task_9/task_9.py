@@ -21,6 +21,23 @@ def read_excel_sheet(file_path, sheet_name):
     except Exception as e:
         print(f"Error: {e}")
         return None
+    
+def rename_columns(dataframe, column_mapping):
+    """
+    Rename columns in the DataFrame using a given mapping dictionary.
+
+    Parameters:
+    dataframe (pd.DataFrame): The DataFrame with Hebrew column names.
+    column_mapping (dict): A dictionary where keys are Hebrew column names and values are English names.
+
+    Returns:
+    pd.DataFrame: The DataFrame with renamed columns.
+    """
+    # Rename columns using the mapping
+    dataframe_renamed = dataframe.rename(columns=column_mapping)
+    
+    # Return the DataFrame with renamed columns
+    return dataframe_renamed
 
 def read_csv_file(file_path, delimiter=',', encoding='utf-8', header='infer'):
     """
@@ -144,19 +161,3 @@ class EDA:
             self.df["Patient"].isin(users_with_multiple_records)
         ]
         return df_rehospitalized_patients
-    def rename_columns(dataframe, column_mapping):
-        """
-        Rename columns in the DataFrame using a given mapping dictionary.
-
-        Parameters:
-        dataframe (pd.DataFrame): The DataFrame with Hebrew column names.
-        column_mapping (dict): A dictionary where keys are Hebrew column names and values are English names.
-
-        Returns:
-        pd.DataFrame: The DataFrame with renamed columns.
-        """
-        # Rename columns using the mapping
-        dataframe_renamed = dataframe.rename(columns=column_mapping)
-        
-        # Return the DataFrame with renamed columns
-        return dataframe_renamed
