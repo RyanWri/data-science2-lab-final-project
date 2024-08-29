@@ -103,13 +103,39 @@ class EDA:
         sns.heatmap(self.df.corr(), annot=True, cmap="coolwarm", fmt=".2f")
         plt.show()
 
-    def categorical_frequency(self):
-        # Count plots for categorical columns
-        for col in self.df.select_dtypes(include=["object", "category"]).columns:
+    def categorical_frequency(self, filter_columns=None):
+        """
+        Plot the frequency distribution of all categorical columns, with specific filtering
+        for selected columns where categories with counts less than 10 are combined into 'Other'.
+
+        Parameters:
+        filter_columns (list of str): List of column names to apply filtering. If None, no filtering is applied.
+        """
+        # Get all categorical columns
+        all_categorical_columns = self.df.select_dtypes(include=["object", "category"]).columns
+        
+        # Count plots for all categorical columns
+        for col in all_categorical_columns:
+            if filter_columns and col in filter_columns:
+                # Replace categories with count less than 30 with 'Other' for specified columns
+                counts = self.df[col].value_counts()
+                small_counts = counts[counts < 30].index
+                self.df[col] = self.df[col].replace(small_counts, 'Other')
+                
+                # Filter out the 'Other' category for the specified columns
+                filtered_df = self.df[self.df[col] != 'Other']
+            else:
+                # No filtering applied, use original DataFrame
+                filtered_df = self.df
+            
+            # Plot the frequency distribution
             plt.figure(figsize=(8, 6))
-            sns.countplot(y=col, data=self.df, order=self.df[col].value_counts().index)
+            sns.countplot(y=col, data=filtered_df, order=filtered_df[col].value_counts().index)
             plt.title(f"Distribution of {col}")
+            plt.tight_layout()
             plt.show()
+
+
 
     def outliers(self):
         # Boxplots for numerical columns to identify outliers
