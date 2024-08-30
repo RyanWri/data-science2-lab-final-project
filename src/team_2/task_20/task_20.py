@@ -36,16 +36,16 @@ def merge_dataframes_left_join(
     )
 
 
-def append_rehospitalized_status_to_patients(df, column_name="Releasing Dr.(code)"):
+def append_rehospitalized_status_to_patients(df, column_name="Patient"):
     """
     append to each patient 2 columns: 1) if they were rehospitalized 2) how many times they were rehospitalized
     Parameters:
-    df (pd.DataFrame): DataFrame containing the column "Releasing Dr.(code)"
+    df (pd.DataFrame): DataFrame containing the column "Patient"
     Returns:
     pd.DataFrame: A DataFrame with the added columns
     """
     # Count the number of hospitalizations per patient in each department
-    df["Dr_release_count"] = df.groupby(column_name)[column_name].transform(
+    df["rehospitalization_count"] = df.groupby(column_name)[column_name].transform(
         "count"
     )
     # Mark patients with more than one hospitalization as repeated
