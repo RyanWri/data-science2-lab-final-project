@@ -1,0 +1,14 @@
+Histogram with Exponential Distribution:
+
+The first graph you provided is a histogram of the number of days in the second hospitalization, which has been normalized.
+The shape of the distribution suggests that the data is heavily skewed to the right, with most patients having short hospital stays and a few having much longer stays. This kind of distribution is typical for hospital stay data.
+The curve overlaid on the histogram is likely representing an exponential distribution, which is often used to model the time between events in a Poisson process (e.g., time between successive hospitalizations).
+Reconstructed Days with VAE (Variational Autoencoder):
+
+The second graph compares the original normalized days of hospitalization with the reconstructed values from a Variational Autoencoder (VAE).
+The red dashed line represents the ideal scenario where the original and reconstructed values match perfectly (i.e., where the model's predictions are completely accurate).
+The scatter of points around this line indicates how well the VAE has managed to capture the underlying distribution of hospitalization days.
+The correlation seen between the original and reconstructed days suggests that the VAE is reasonably effective at capturing the underlying patterns, although there is some variance, particularly for higher values.
+Conclusion:
+Distribution Fit: The histogram's shape and the nature of the exponential distribution curve suggest that an exponential distribution might be a good fit for the number of days in the second hospitalization. The VAE further supports this by showing a reasonable level of accuracy in reconstructing the data, even though it is not perfect.
+VAE as a Deep Learning Method: The VAE was used to learn the distribution of hospitalization days. It provides a deep learning-based validation that the exponential-like behavior observed in the histogram is consistent
