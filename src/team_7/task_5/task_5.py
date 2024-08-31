@@ -1,14 +1,12 @@
 # %% 
 import warnings
 warnings.filterwarnings('ignore')
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import random
 random.seed(42)
 from IPython.display import display, HTML
-from scipy.stats import chi2_contingency
+
 
 # Function to fill empty cells with the mode value
 def fill_empty_cells(df):
