@@ -1,0 +1,24 @@
+model:
+  layers:
+    - type: Dense
+      units: 128
+      activation: relu
+    - type: Dropout
+      rate: 0.5
+    - type: Dense
+      units: 64
+      activation: relu
+    - type: Dropout
+      rate: 0.5
+    - type: Dense
+      units: 1
+      activation: sigmoid
+  optimizer: adam
+  loss: binary_crossentropy
+  metrics: 
+    - accuracy
+
+training:
+  epochs: 50
+  batch_size: 32
+  validation_split: 0.2
