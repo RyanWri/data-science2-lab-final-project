@@ -1,5 +1,4 @@
 import pandas as pd
-import os
 
 def process_medication_data(general_data_df, cleaned_drugs_df, cleaned_hospitalization1_df):
     # Split the 'תרופות קבועות' column into separate medication codes
@@ -35,17 +34,14 @@ def process_medication_data(general_data_df, cleaned_drugs_df, cleaned_hospitali
     return merged_medications
 
 if __name__ == "__main__":
-    # Create the medications_data directory if it does not exist
-    os.makedirs('medications_data', exist_ok=True)
-
-    # Load cleaned data from the previous step
-    general_data_df = pd.read_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/general_data_cleaned.csv')
-    cleaned_drugs_df = pd.read_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/drugs_cleaned.csv')
-    cleaned_hospitalization1_df = pd.read_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/hospitalization1_cleaned.csv')
+    # Use relative paths for the data files
+    general_data_df = pd.read_csv('medications_data/general_data_cleaned.csv')
+    cleaned_drugs_df = pd.read_csv('medications_data/drugs_cleaned.csv')
+    cleaned_hospitalization1_df = pd.read_csv('medications_data/hospitalization1_cleaned.csv')
 
     # Process the medication data
     merged_medications = process_medication_data(general_data_df, cleaned_drugs_df, cleaned_hospitalization1_df)
     
-    # Save processed data for further use in the medications_data folder
-    merged_medications.to_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/merged_medications.csv', index=False)
+    # Save processed data for further use in the medications_data folder using relative paths
+    merged_medications.to_csv('medications_data/merged_medications.csv', index=False)
     print("Data processing completed successfully.")

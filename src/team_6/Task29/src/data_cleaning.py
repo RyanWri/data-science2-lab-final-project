@@ -32,14 +32,15 @@ if __name__ == "__main__":
     # Create the medications_data directory if it does not exist
     os.makedirs('medications_data', exist_ok=True)
 
-    file_path = r'/Users/liav/Desktop/GIT/DL_Final/task25/data/rehospitalization.xlsx'
+    # Use relative path for the file
+    file_path = os.path.join('data', 'rehospitalization.xlsx')
     cleaned_drugs_df, cleaned_hospitalization1_df, general_data_df = load_and_clean_data(file_path)
     
     if cleaned_drugs_df is not None:
-        # Save cleaned data to CSV files in the medications_data folder
-        cleaned_drugs_df.to_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/drugs_cleaned.csv', index=False)
-        cleaned_hospitalization1_df.to_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/hospitalization1_cleaned.csv', index=False)
-        general_data_df.to_csv(r'/Users/liav/Desktop/GIT/DL_Final/task25/medications_data/general_data_cleaned.csv', index=False)
+        # Save cleaned data to CSV files in the medications_data folder using relative paths
+        cleaned_drugs_df.to_csv(os.path.join('medications_data', 'drugs_cleaned.csv'), index=False)
+        cleaned_hospitalization1_df.to_csv(os.path.join('medications_data', 'hospitalization1_cleaned.csv'), index=False)
+        general_data_df.to_csv(os.path.join('medications_data', 'general_data_cleaned.csv'), index=False)
         print("Data cleaning ended")
     else:
         print("Data cleaning failed due to an error in loading the Excel file.")

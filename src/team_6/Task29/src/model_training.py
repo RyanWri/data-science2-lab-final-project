@@ -2,7 +2,6 @@ import pandas as pd
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-import os
 import yaml
 
 def load_config(config_path='config.yaml'):
@@ -63,8 +62,6 @@ def build_and_train_model(X_train, y_train, X_test, y_test, config):
     plt.ylabel('Loss')
     plt.legend()
     plt.tight_layout()
-    if not os.path.exists('pictures'):
-        os.makedirs('pictures')
     plt.savefig('pictures/loss_per_epoch.png')
     plt.close()
 
@@ -92,17 +89,15 @@ def plot_common_medications(merged_medications):
     plt.ylabel('Count')
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
-    if not os.path.exists('pictures'):
-        os.makedirs('pictures')
     plt.savefig('pictures/top_20_common_medications.png')
     plt.close()
 
 if __name__ == "__main__":
     print("Loading configuration...")
-    config = load_config('config.yaml')
+    config = load_config('config.yaml')  # Use relative path for config file
 
     print("Loading processed medication data...")
-    merged_medications = pd.read_csv('medications_data/merged_medications.csv')
+    merged_medications = pd.read_csv('medications_data/merged_medications.csv')  # Use relative path for data file
 
     print("Columns in merged_medications:", merged_medications.columns)
 
@@ -110,7 +105,7 @@ if __name__ == "__main__":
 
     if X_train is not None:
         model = build_and_train_model(X_train, y_train, X_test, y_test, config)
-        model.save('rehospitalization_model.h5')
+        model.save('rehospitalization_model.h5')  # Use relative path for saving the model
         print("Model training completed and saved.")
 
         # Plot the top 20 most common medications

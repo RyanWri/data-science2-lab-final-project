@@ -1,18 +1,20 @@
-import os
 import subprocess
+import os
 
 def run_script(script_name):
     """Run a Python script using the virtual environment's Python interpreter."""
-    venv_python = "/Users/liav/Desktop/GIT/DL_Final/task25/venv/bin/python"
-    result = subprocess.run([venv_python, script_name], capture_output=True, text=True)
+    venv_python = "venv/bin/python"  # Use a relative path to the Python interpreter in the virtual environment
+    script_path = os.path.join(os.path.dirname(__file__), script_name)  # Construct the relative path to the script
+    result = subprocess.run([venv_python, script_path], capture_output=True, text=True)
     print(result.stdout)
     if result.stderr:
         print(result.stderr)
 
 def run_script_with_live_output(script_name):
     """Run a Python script and display live output."""
-    venv_python = "/Users/liav/Desktop/GIT/DL_Final/task25/venv/bin/python"
-    process = subprocess.Popen([venv_python, script_name], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    venv_python = "venv/bin/python"  # Use a relative path to the Python interpreter in the virtual environment
+    script_path = os.path.join(os.path.dirname(__file__), script_name)  # Construct the relative path to the script
+    process = subprocess.Popen([venv_python, script_path], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
     for line in process.stdout:
         print(line, end='')  # Print each line as it comes
