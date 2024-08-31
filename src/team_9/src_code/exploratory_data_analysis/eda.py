@@ -1,4 +1,5 @@
-from pandas import ExcelWriter, read_excel, Series
+from datetime import datetime
+from pandas import ExcelWriter, read_excel, Series, Timestamp
 from pandas.core.frame import DataFrame
 
 class SheetTypes:
@@ -28,6 +29,14 @@ class EDA:
       data_frame.loc[icu_condition & data_frame['codeDoctor'].isnull(), 'codeDoctor'] = 1
 
       data_frame.fillna(0, inplace=True)
+
+  @classmethod
+  def filter_non_rehospitalized_patients_data(cls, hospitalization1_df: DataFrame, hospitalization2_df: DataFrame, patient_id_column: str) -> DataFrame:
+    return hospitalization1_df[hospitalization1_df[patient_id_column].isin(hospitalization2_df[patient_id_column])]
+
+  @classmethod
+  def filter_rehospitalized_patients_data(cls, hospitalization1_df: DataFrame, hospitalization2_df: DataFrame, patient_id_column: str) -> DataFrame:
+    return hospitalization1_df[~hospitalization1_df[patient_id_column].isin(hospitalization2_df[patient_id_column])]
   
   @classmethod
   def get_conditions_for_rows_with_missing_data(cls, sheet_name: str, data_frame: DataFrame) -> Series:
@@ -46,8 +55,21 @@ class EDA:
     )
 
   @classmethod
+  def get_patients_with_release_day_of_week(cls, hospitalization1_df: DataFrame, patient_id_column: str, release_date_column: str, release_date_format: str, release_day_column: str) -> DataFrame:
+    def day_of_week(date_obj: Timestamp):
+      return date_obj.strftime("%A")
+    return DataFrame({
+      patient_id_column: hospitalization1_df[patient_id_column],
+      release_day_column: hospitalization1_df[release_date_column].apply(day_of_week)
+    })
+
+  @classmethod
   def read_from_excel(cls, abs_file_path: str, sheet_name: str) -> DataFrame:
     return read_excel(abs_file_path, sheet_name=sheet_name)
+
+  @classmethod
+  def read_all_sheets_from_excel(cls, abs_file_path: str) -> DataFrame:
+    return cls.read_from_excel(abs_file_path, None)
 
   @classmethod
   def write_to_excel(cls, data_frame: DataFrame, abs_file_path: str, sheet_name: str) -> DataFrame:
