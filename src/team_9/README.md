@@ -4,11 +4,11 @@ The file was originally uploaded to our course section in Moodle. In any case, y
 
 Our EDA consists of a couple of paths:
 - Treatment of missing values in sheet `erBeforeHospitalization2`, document `rehospitalization.xlsx`.  
-We store the output under the file `erBeforeHospitalization.csv` in the directory `assets`, with intended future use by other teams.
-- Parameter exploration in the `hospitalization2.csv`.
-**To be done**
+We store the output in the file `team09_task06_erBeforeHospitalization.csv` in the directory `assets`, with intended future use by other teams.
+- Parameter exploration in the `hospitalization2.csv`. **To be done**
 - Relationship exploration between the release day of week and re-hospitalization.  
-The output can be seen directly in the `stdout`. That being said, **the relationship usage is not applicable!**  
+The output can be seen either directly in the `stdout` (by executing associated command) or in the file `team09_task22.txt`.
+That being said, **the relationship usage is not applicable!**  
 Primary reason is an existence of *definitive bias*.  
 Sheet `hospitalization1` includes release dates *only for patients who are re-hospitalized*.  
 More detailed explanation can be seen in the Note-worthy section "Relationship between release day of week and re-hospitalization".
@@ -24,7 +24,7 @@ The full path for `erBeforeHospitalization2` includes a number of steps, each re
 ./main.py -v -i rehospitalization.xlsx -o rehospitalization.xlsx --ascii-encoded erBeforeHospitalization2 && \
 ./main.py -v -i rehospitalization.xlsx -o rehospitalization.xlsx --missing-values erBeforeHospitalization2 && \
 ./main.py -v -i rehospitalization.xlsx -o rehospitalization.xlsx --original-encoded erBeforeHospitalization2 && \
-./main.py -v -i rehospitalization.xlsx -o erBeforeHospitalization.csv --sheet-file erBeforeHospitalization2
+./main.py -v -i rehospitalization.xlsx -o team09_task06_erBeforeHospitalization.csv --sheet-file erBeforeHospitalization2
 ```
 ### Relationship test between day of release and rehospitalization
 ```
