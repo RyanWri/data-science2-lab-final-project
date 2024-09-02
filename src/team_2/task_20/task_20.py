@@ -1,54 +1,37 @@
-import json
-from typing import List
 
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
-
-def normalize_date_column(df: pd.DataFrame, column_name: str) -> pd.Series:
-    return pd.to_datetime(df[column_name]).dt.date
-
-
-def rename_columns_from_file(df: pd.DataFrame, file_path: str) -> pd.DataFrame:
-    # Reading columns from the JSON file
-    with open(file_path, "r", encoding="utf-8") as f:
-        column_names = json.load(f)
-
-    return df.rename(columns=column_names)
-
-
-def merge_dataframes_left_join(
-    df1: pd.DataFrame,
-    df2: pd.DataFrame,
-    left_table_columns: List[str],
-    right_table_columns: List[str],
-) -> pd.DataFrame:
-    for column in left_table_columns:
-        assert (
-            column in df1.columns
-        ), f"Column '{column}' not found in the left dataframe."
-    for column in right_table_columns:
-        assert (
-            column in df2.columns
-        ), f"Column '{column}' not found in the right dataframe."
-
-    return pd.merge(
-        df1, df2, how="left", left_on=left_table_columns, right_on=right_table_columns
-    )
-
-
-def append_rehospitalized_status_to_patients(df, column_name="Patient"):
+def encode_and_correlate(df, categorical_column, numerical_column, method='one-hot'):
     """
-    append to each patient 2 columns: 1) if they were rehospitalized 2) how many times they were rehospitalized
+    Encode a categorical column and compute its correlation with a numerical column.
+
     Parameters:
-    df (pd.DataFrame): DataFrame containing the column "Patient"
-    Returns:
-    pd.DataFrame: A DataFrame with the added columns
-    """
-    # Count the number of hospitalizations per patient in each department
-    df["rehospitalization_count"] = df.groupby(column_name)[column_name].transform(
-        "count"
-    )
-    # Mark patients with more than one hospitalization as repeated
-    df["is_rehospitalization"] = df["rehospitalization_count"] > 1
+    df (pd.DataFrame): The DataFrame containing the data.
+    categorical_column (str): The name of the categorical column to encode.
+    numerical_column (str): The name of the numerical column to check correlation with.
+    method (str): Encoding method - 'one-hot' for One-Hot Encoding, 'label' for Label Encoding.
 
-    return df
+    Returns:
+    pd.Series or float: Correlation value(s) between the encoded categorical column and the numerical column.
+    """
+    if method == 'one-hot':
+        # One-Hot Encoding
+        df_encoded = pd.get_dummies(df, columns=[categorical_column], drop_first=True)
+        
+        # Compute correlation between all encoded columns and the numerical column
+        correlations = df_encoded.corr()[numerical_column]
+        
+    elif method == 'label':
+        # Label Encoding
+        le = LabelEncoder()
+        df[categorical_column + '_encoded'] = le.fit_transform(df[categorical_column])
+        
+        # Compute correlation between the label-encoded column and the numerical column
+        correlation = df[[categorical_column + '_encoded', numerical_column]].corr().iloc[0, 1]
+        correlations = correlation
+    
+    else:
+        raise ValueError("Method must be 'one-hot' or 'label'")
+    
+    return correlations
