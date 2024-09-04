@@ -1,9 +1,10 @@
 import pandas as pd
 
+
 def calculate_rehospitalizations(df, patient_col):
     """
     Calculates how many times each patient has been rehospitalized.
-    
+
     Parameters:
     -----------
     df : pd.DataFrame
@@ -16,14 +17,19 @@ def calculate_rehospitalizations(df, patient_col):
     pd.DataFrame
         DataFrame with added column `hospitalization_count` indicating the number of hospitalizations for each patient.
     """
-    df['hospitalization_count'] = df.groupby(patient_col)[patient_col].transform('count')
+    df["hospitalization_count"] = df.groupby(patient_col)[patient_col].transform(
+        "count"
+    )
     return df
 
-def calculate_duration_between_hospitalizations(df, patient_col, admission_col, release_col):
+
+def calculate_duration_between_hospitalizations(
+    df, patient_col, admission_col, release_col
+):
     """
-    Calculates the duration between each hospitalization for each patient based on the 
+    Calculates the duration between each hospitalization for each patient based on the
     Release_Date of the previous hospitalization and the Admission_Entry_Date of the next one.
-    
+
     Parameters:
     -----------
     df : pd.DataFrame
@@ -38,24 +44,27 @@ def calculate_duration_between_hospitalizations(df, patient_col, admission_col, 
     Returns:
     --------
     pd.DataFrame
-        DataFrame with an added column `duration_between_hospitalizations` indicating 
+        DataFrame with an added column `duration_between_hospitalizations` indicating
         the number of days between hospitalizations.
     """
     # Sort by patient_id and Admission_Entry_Date
     df = df.sort_values(by=[patient_col, admission_col])
-    
+
     # Shift Release_Date to calculate time difference between the previous release and next admission
-    df['previous_release'] = df.groupby(patient_col)[release_col].shift(1)
-    
+    df["previous_release"] = df.groupby(patient_col)[release_col].shift(1)
+
     # Calculate the duration between consecutive hospitalizations
-    df['duration_between_hospitalizations'] = (df[admission_col] - df['previous_release']).dt.days
-    
+    df["duration_between_hospitalizations"] = (
+        df[admission_col] - df["previous_release"]
+    ).dt.days
+
     return df
+
 
 def classify_duration(df, duration_col):
     """
     Classifies the duration between hospitalizations into three quartiles: short, medium, and long.
-    
+
     Parameters:
     -----------
     df : pd.DataFrame
@@ -73,14 +82,17 @@ def classify_duration(df, duration_col):
 
     def classify_duration_value(duration):
         if duration <= quartiles[0.33]:
-            return 'short'
+            return "short"
         elif duration <= quartiles[0.66]:
-            return 'medium'
+            return "medium"
         else:
-            return 'long'
+            return "long"
 
-    df_duration['duration_classification'] = df_duration[duration_col].apply(classify_duration_value)
+    df_duration["duration_classification"] = df_duration[duration_col].apply(
+        classify_duration_value
+    )
     return df_duration
+
 
 def process_rehospitalization_data(df, patient_col, admission_col, release_col):
     """
@@ -111,14 +123,23 @@ def process_rehospitalization_data(df, patient_col, admission_col, release_col):
     # Convert admission and release dates to datetime
     df[admission_col] = pd.to_datetime(df[admission_col])
     df[release_col] = pd.to_datetime(df[release_col])
-    
+
     # Step 1: Calculate the number of times each patient was rehospitalized
     df = calculate_rehospitalizations(df, patient_col)
-    
+
     # Step 2: Calculate the duration between each hospitalization based on release and next admission
-    df = calculate_duration_between_hospitalizations(df, patient_col, admission_col, release_col)
-    
+    df = calculate_duration_between_hospitalizations(
+        df, patient_col, admission_col, release_col
+    )
+
     # Step 3: Classify each duration between hospitalizations into quartiles
-    df = classify_duration(df, 'duration_between_hospitalizations')
-    
-    return df[[patient_col, 'hospitalization_count', 'duration_between_hospitalizations', 'duration_classification']]
+    df = classify_duration(df, "duration_between_hospitalizations")
+
+    return df[
+        [
+            patient_col,
+            "hospitalization_count",
+            "duration_between_hospitalizations",
+            "duration_classification",
+        ]
+    ]
