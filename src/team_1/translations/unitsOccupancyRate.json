@@ -1,5 +1,5 @@
 {
-  "מחלקה": "unitName1",
+  "מחלקה": "department_id",
   "תאריך": "date",
   "כמות שוהים": "occupancy_count",
   "שיעור תפוסה": "occupancy_rate"
