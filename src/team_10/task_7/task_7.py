@@ -9,7 +9,7 @@ from src.team_1.utils import *
 # ========== Path Config ==========
 load_path = '../../data/rehospitalization.xlsx'
 sheet = 'hospitalization2'
-export_path = f'../../data/{sheet}.csv'
+export_path = f'../../data/{sheet}_Team_10.csv'
 data_dir_path = 'src/data'
 
 # =========== Functions ===========
