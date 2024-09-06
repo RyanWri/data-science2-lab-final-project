@@ -1,8 +1,14 @@
+import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from sklearn.metrics import classification_report
+from sklearn.metrics import (
+    ConfusionMatrixDisplay,
+    classification_report,
+    confusion_matrix,
+)
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
@@ -177,27 +183,62 @@ class ClassificationPipeline:
         print(classification_report(y_test, predicted))
 
 
-# Example Usage
-if __name__ == "__main__":
-    # Assuming df is your pandas DataFrame that contains features and a target column
-    # Example features: ['age', 'gender_encoded', 'hospitalization_count']
-    # Example target: 'duration_classification'
+class ClassificationVisualization:
+    """
+    A class to handle visualization of classification results.
+    This class does not need the DataFrame or features, just the actual
+    and predicted values along with class names for plotting.
+    """
 
-    # Create a pipeline with features and target
-    pipeline = ClassificationPipeline(
-        df=your_dataframe,
-        features=["age", "gender_encoded", "hospitalization_count"],
-        target="duration_classification",
-    )
+    def plot_countplot(self, y_true, y_pred, class_names):
+        """
+        Plot a countplot comparing the actual and predicted class distributions.
 
-    # Prepare the data
-    X_train, X_test, y_train, y_test = pipeline.prepare_data()
+        Parameters:
+        -----------
+        y_true : array-like
+            Actual class labels.
+        y_pred : array-like
+            Predicted class labels.
+        class_names : list
+            List of class names for labeling the x-axis.
+        """
+        plt.figure(figsize=(10, 6))
 
-    # Train the model
-    input_size = X_train.shape[1]  # Number of features
-    model = pipeline.train_model(
-        X_train, y_train, input_size, num_classes=pipeline.num_classes
-    )
+        # Actual counts
+        plt.subplot(1, 2, 1)
+        sns.countplot(x=y_true, palette="viridis")
+        plt.title("Actual Class Distribution")
+        plt.xlabel("Class")
+        plt.ylabel("Count")
+        plt.xticks(ticks=[0, 1, 2], labels=class_names)
 
-    # Evaluate the model
-    pipeline.evaluate_model(model, X_test, y_test)
+        # Predicted counts
+        plt.subplot(1, 2, 2)
+        sns.countplot(x=y_pred, palette="viridis")
+        plt.title("Predicted Class Distribution")
+        plt.xlabel("Class")
+        plt.ylabel("Count")
+        plt.xticks(ticks=[0, 1, 2], labels=class_names)
+
+        plt.tight_layout()
+        plt.show()
+
+    def plot_confusion_matrix(self, y_true, y_pred, class_names):
+        """
+        Plot a confusion matrix to evaluate the performance of the classification.
+
+        Parameters:
+        -----------
+        y_true : array-like
+            Actual class labels.
+        y_pred : array-like
+            Predicted class labels.
+        class_names : list
+            List of class names for labeling the matrix.
+        """
+        cm = confusion_matrix(y_true, y_pred)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=class_names)
+        disp.plot(cmap="viridis", xticks_rotation="vertical")
+        plt.title("Confusion Matrix")
+        plt.show()
