@@ -13,4 +13,22 @@
 | Unique  | PowerPoint Presentation                                            | Pending                                  | Not Started                     |
 
 
-### Task Information:
+### Conclusions:
+    Task 9: translations to hebrew, multiple diagnoses - top 10 dignoses:
+            Admission: 1. 78609
+                        2. 7865
+                        3. 78060
+                        4. 08889
+                        5. 2859
+                        6. 7895
+                        7. 486
+                        8. 4280
+                        9. 42731
+                        10. 7807
+            Release: all of the above and in addition 5990 & 514
+
+            No strong correlation between the different features.
+            Most hospitalizations were urgent and most were short, mainly a few days.
+            No drastic amount of patients in any specific unit.
+            Most hospitalization patients were excorted from home.
+        
