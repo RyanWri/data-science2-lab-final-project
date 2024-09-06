@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 
 def read_excel_sheet(file_path, sheet_name):
@@ -19,3 +20,28 @@ def read_excel_sheet(file_path, sheet_name):
     except Exception as e:
         print(f"Error: {e}")
         return None
+
+
+def label_encode(df, columns):
+    """
+    Label encode specified columns in the dataframe.
+
+    Parameters:
+    -----------
+    df : pd.DataFrame
+        The input dataframe containing the data.
+    columns : list
+        List of column names that need to be label encoded.
+
+    Returns:
+    --------
+    pd.DataFrame
+        DataFrame with label encoded columns.
+    """
+    label_encoder = LabelEncoder()
+
+    # Loop through the columns and apply label encoding
+    for col in columns:
+        df[col] = label_encoder.fit_transform(df[col])
+
+    return df
