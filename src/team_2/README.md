@@ -14,7 +14,8 @@
 
 
 ### Conclusions:
-    Task 9: translations to hebrew, multiple diagnoses - top 10 dignoses:
+    **Task 9: **
+    Translations to hebrew, multiple diagnoses - top 10 dignoses:
             Admission: 1. 78609
                         2. 7865
                         3. 78060
@@ -31,4 +32,11 @@
             Most hospitalizations were urgent and most were short, mainly a few days.
             No drastic amount of patients in any specific unit.
             Most hospitalization patients were excorted from home.
+    **Task 20: **
+    - Based on Doctor rank data(Senior/Not Senior), the ranks are split almost equally to 4  categories: Yes, No, ? and Depends from which date.
+    - Based on the PIE chart, They're split almost equally in amount of doctors.
+    - Based on Gradient Boosting Model that predicts rehospitalization based on Doctor rank, the accuracy is 50% meaniing we need Feature Extraction/Engineering in the preprocessing.
+    
+
+
         
