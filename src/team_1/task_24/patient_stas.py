@@ -135,11 +135,4 @@ def process_rehospitalization_data(df, patient_col, admission_col, release_col):
     # Step 3: Classify each duration between hospitalizations into quartiles
     df = classify_duration(df, "duration_between_hospitalizations")
 
-    return df[
-        [
-            patient_col,
-            "hospitalization_count",
-            "duration_between_hospitalizations",
-            "duration_classification",
-        ]
-    ]
+    return df
