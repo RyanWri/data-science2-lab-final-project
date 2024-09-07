@@ -194,6 +194,11 @@ hospitalization2_cleaned = hospitalization2.drop(index=nan_indexes)
 # Display the cleaned DataFrame to verify that the rows were removed
 display(hospitalization2_cleaned.head())
 
+# Save the cleaned DataFrame as an Excel file
+output_file_path = "hospitalization2_cleaned.xlsx"
+hospitalization2_cleaned.to_excel(output_file_path, index=False)
+print(f"DataFrame saved successfully to {output_file_path}")
+
 # %% 
 # Create a countplot with Duration_Category and hue based on unitName1
 plt.figure(figsize=(10, 6))
