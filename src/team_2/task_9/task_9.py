@@ -3,36 +3,27 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-
-
-def read_excel_sheet(file_path, sheet_name):
-    """
-    Reads a specific sheet from an Excel file.
-    Parameters:
-    file_path (str): The path to the Excel file.
-    sheet_name (str): The name of the sheet to be read.
-    Returns:
-    pd.DataFrame: The data from the specified sheet as a pandas DataFrame.
-    """
-    try:
-        # Read the specified sheet
-        df = pd.read_excel(file_path, sheet_name=sheet_name)
-        return df
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+import json
     
-def rename_columns(dataframe, column_mapping):
+def rename_columns_from_json(dataframe, directory_path, json_file_name):
     """
-    Rename columns in the DataFrame using a given mapping dictionary.
+    Rename columns in the DataFrame using a mapping dictionary from a JSON file.
 
     Parameters:
     dataframe (pd.DataFrame): The DataFrame with Hebrew column names.
-    column_mapping (dict): A dictionary where keys are Hebrew column names and values are English names.
+    directory_path (str): The directory path where the JSON file is located.
+    json_file_name (str): The name of the JSON file containing the column mapping (Hebrew to English).
 
     Returns:
     pd.DataFrame: The DataFrame with renamed columns.
     """
+    # Construct the full path to the JSON file
+    json_file_path = os.path.join(directory_path, json_file_name)
+
+    # Load the column mapping from the JSON file
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        column_mapping = json.load(f)
+    
     # Rename columns using the mapping
     dataframe_renamed = dataframe.rename(columns=column_mapping)
     
