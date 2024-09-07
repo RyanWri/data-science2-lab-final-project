@@ -1,0 +1,9 @@
+Methodology:
+
+In this task, the goal was to classify patients based on the time interval between their first and second hospitalizations into 
+three categories: high (0), medium (1), and low (2) re-hospitalization risks. We started by calculating the number of days between the 
+discharge date of the first hospitalization and the admission date of the second hospitalization. A classification was applied where fewer
+than 11 days indicated a high re-hospitalization risk, 11-20 days indicated medium risk, and more than 20 days indicated low risk.
+The data was then checked for completeness, and visualizations were generated to inspect the distribution of re-hospitalization categories 
+and their relationship with the days between hospitalizations. This analysis provides valuable insights into the temporal patterns of patient
+re-hospitalizations.
