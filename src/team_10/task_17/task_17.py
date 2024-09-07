@@ -33,12 +33,12 @@ plt.xticks(fontsize=11)
 plt.show()
 
 # Calculate the quartiles
-quartiles = np.percentile(df['Admission_days'], [25, 50, 75])
+quartiles = np.percentile(df['Admission_days'], [33, 66])
 
 # Define bin edges for 4 equal-sized groups
-bin_edges = [df['Admission_days'].min(), quartiles[0], quartiles[1], quartiles[2], df['Admission_days'].max()]
+bin_edges = [df['Admission_days'].min(), quartiles[0], quartiles[1], df['Admission_days'].max()]
 
-colors = ['red', 'green', 'blue', 'orange']  # One color for each quartile
+colors = ['red', 'green', 'blue']  # One color for each quartile
 
 plt.figure(figsize=(15, 8))
 n, bins, patches = plt.hist(df['Admission_days'], bins=bin_edges, edgecolor='black')
@@ -59,7 +59,6 @@ bin_labels = [
     f"Group 1: {int(bin_edges[0])} - {int(bin_edges[1])}",
     f"Group 2: {int(bin_edges[1])} - {int(bin_edges[2])}",
     f"Group 3: {int(bin_edges[2])} - {int(bin_edges[3])}",
-    f"Group 4: {int(bin_edges[3])} - {int(bin_edges[4])}"
 ]
 
 # Print the group ranges
