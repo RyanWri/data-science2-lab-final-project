@@ -4,6 +4,7 @@ from os.path import abspath, join as path_join, dirname
 
 from src_code import ascii_encoded, ExecutionConfig, original_encoded, relationship_test_release_date_rehospitalization, split_sheet, store_sheet_as_file, time_series_analysis, treat_missing_values
 
+
 def main():
   parser = ArgumentParser(description="This is Python CLI that performs EDA tasks. Its expected input originates from rehospitalization.xlsx. The program is expected to be executed from $PROJECT_ROOT/src/team_9")
   parser.add_argument("-i", "--input", type=str, required=True, help="Input document name. It is expected to be of type .xlsx and reside in team_9's assets directory.")

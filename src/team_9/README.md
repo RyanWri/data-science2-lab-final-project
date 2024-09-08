@@ -58,6 +58,7 @@ While it is widely used, "best-practice" recommends to avoid its usage as it is 
 We have a dedicated mechanism, with module `HebEngTranslator` at its core, that transforms documents/tables to `ASCII` encoded only and back to the original format.
 
 ### task_22: Relationship between release day of week and re-hospitalization
+
 None of the models should use this relationship.  
 There is a definitive bias towards finding predictive ability between day of week and rehospitalization, as *only patients who are rehospitalized are mentioned in sheet `hospitalization1`*. We have no data regarding patients who are not rehospitilized.  
 This prevents the *mandatory establishment of relationship existence* between day of week and rehospitalization, which makes any predictive ability describe above invalid.
