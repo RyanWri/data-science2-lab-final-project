@@ -90,8 +90,12 @@ def translate_hospitalization1_dataset(df):
 
 # %% 
 # Load Dataset
-path = "F:\\לימודים\\תואר שני\\סמסטר ב\\Data Science 2\\DS2-Final Project\\hospitalization1.xlsx"
-hptl1 = pd.read_excel(path)
+df_path = "F:\\לימודים\\תואר שני\\סמסטר ב\\Data Science 2\\DS2-Final Project\\rehospitalization.xlsx"
+
+units_occupancy_rate = pd.read_excel(df_path, sheet_name='unitsOccupancyRate')
+hptl1 = pd.read_excel(df_path, sheet_name='hospitalization1')
+
+
 
 display(HTML('<h2>Hospitalization1 Dataset</h2>'))
 display(hptl1.head(5))

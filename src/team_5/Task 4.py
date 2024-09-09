@@ -1,14 +1,12 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # Data cleaning and completion for table: general data
 import pandas as pd
 
-GeneralData = r'src\data\GeneralData.xlsx'
-Drugs = r'src\data\Drugs.xlsx'
+# GeneralData = r'src\data\GeneralData.xlsx'
+# Drugs = r'src\data\Drugs.xlsx'
 
-df_GeneralData = pd.read_excel(GeneralData, engine='openpyxl')
-df_Drugs = pd.read_excel(Drugs, engine='openpyxl')
+# df_GeneralData = pd.read_excel(GeneralData, engine='openpyxl')
+# df_Drugs = pd.read_excel(Drugs, engine='openpyxl')
+
+df_GeneralData = pd.read_excel(r'src\data\rehospitalization.xlsx', sheet_name='GeneralData')
 
 mean_weight = df_GeneralData['משקל'].mean()
 df_GeneralData['משקל'].fillna(mean_weight, inplace=True)
@@ -26,29 +24,28 @@ df_GeneralData.loc[df_GeneralData['BMI'].isna(), 'BMI'] = df_GeneralData.apply(
 df_GeneralData['השכלה'] = df_GeneralData['השכלה'].apply(lambda x: None if isinstance(x, (int, float)) else x)
 df_GeneralData['השכלה'].fillna('לא ידוע', inplace=True)
 
-df_GeneralData['מספר ילדים'].fillna('לא ידוע', inplace=True)
 
-df_GeneralData['מצב משפחתי'].fillna('לא ידוע', inplace=True)
+# Convert 'מספר ילדים' to numeric, setting non-numeric values to NaN
+df_GeneralData['מספר ילדים'] = pd.to_numeric(df_GeneralData['מספר ילדים'], errors='coerce')
+# Calculate the median of the numeric values, ignoring NaN values
+median_value = df_GeneralData['מספר ילדים'].median()
+# Replace non-numeric (NaN) values with the median
+df_GeneralData['מספר ילדים'].fillna(median_value, inplace=True)
 
-# Create a mapping dictionary from the mapping file
-# Assuming the mapping file has columns 'Code' and 'Drug'
-mapping_dict = dict(zip(df_Drugs['Code'].astype(str), df_Drugs['Drug'].astype(str)))
+marital_status_mapping = {
+    'לא ידוע': 1,
+    'רווק': 2,
+    'נשוי': 3,
+    'פרוד': 4,
+    'גרוש': 5,
+    'אלמן': 6
+}
 
-# Function to replace codes with names
-def replace_codes_with_names(codes_str):
-    if isinstance(codes_str, str):  # Ensure the value is a string
-        codes = [code.strip() for code in codes_str.split(',')]  # Split and strip whitespace
-        names = [mapping_dict.get(code, value) for code in codes]  # Get names from dictionary
-        # Ensure all items in names are strings
-        names = [str(name) for name in names]
-        return ', '.join(names)  # Join names back into a string
-    return codes_str  # Return the original value if it's not a string
+# Apply the mapping to the 'מצב משפחתי' column
+df_GeneralData['מצב משפחתי'] = df_GeneralData['מצב משפחתי'].map(marital_status_mapping)
 
-# Apply the function to each row in the column 'תרופות קבועות'
-# Create a new column 'DrugNames' to store the results
-df_GeneralData['DrugNames'] = df_GeneralData['תרופות קבועות'].apply(replace_codes_with_names)
+
 
 # Save the updated DataFrame to a new Excel file
 output_file_path = 'src\data\GeneralData.csv'
-df_GeneralData.to_excel(output_file_path, index=False)
-
+df_GeneralData.to_csv(output_file_path, index = False, encoding='utf-8-sig')

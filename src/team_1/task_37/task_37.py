@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 import pandas as pd
 from sklearn.decomposition import PCA
@@ -9,15 +10,15 @@ from sklearn.preprocessing import StandardScaler
 
 
 class DimensionalityReducer:
-    def __init__(self, df: pd.DataFrame, target_variable: str = "is_rehospitalization"):
+    def __init__(self, df: pd.DataFrame, features: List[str], target_variable: str):
         """
         Initialize with the DataFrame and standardize the features.
         """
-        self.df = df
+        self.df = df[features]
         self.X = df.drop(
-            columns=["is_rehospitalization"]
+            columns=[target_variable], axis=1
         )  # Assuming 'is_rehospitalization' is the target variable
-        self.y = df["is_rehospitalization"]
+        self.y = df[target_variable]
 
         # Standardize the features
         self.scaler = StandardScaler()
@@ -56,15 +57,3 @@ class DimensionalityReducer:
         selector = SelectKBest(score_func=f_classif, k=k)
         X_selected = selector.fit_transform(self.X_scaled, self.y)
         return X_selected
-
-
-if __name__ == "__main__":
-    # Modify as you wish this is an example how to use the reducer
-    data_dir = os.path.join(os.getcwd(), "..", "..", "data")
-    filepath = os.path.join(data_dir, "rehospitalization.xlsx")
-    df_rehospitalization = pd.read_excel(filepath, sheet_name="hospitalization1")
-    reducer = DimensionalityReducer(df_rehospitalization)
-    X_pca = reducer.apply_pca(n_components=2)
-    X_tsne = reducer.apply_tsne(n_components=2, perplexity=30)
-    X_lda = reducer.apply_lda(n_components=2)
-    X_selected = reducer.apply_feature_selection(k=2)
