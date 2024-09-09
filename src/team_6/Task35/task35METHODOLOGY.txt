@@ -1,0 +1,14 @@
+1. **Accuracy**: The proportion of correct predictions (both re-hospitalized and not re-hospitalized) out of all predictions.
+2. **Precision**: Out of all the patients the model predicted would be re-hospitalized, how many were actually re-hospitalized. High precision indicates fewer false positives.
+3. **Recall**: Out of all the patients who were actually re-hospitalized, how many did the model correctly identify. High recall indicates fewer false negatives.
+4. **F1-Score**: A balanced measure that considers both precision and recall. It's useful when you want a single metric to understand the model's performance.
+
+Result explanetion
+- **High Recall Across All Diagnoses**: The recall is 100% for all diagnoses, which means the model is identifying every patient who was re-hospitalized for each diagnosis. However, this might also indicate that the model is biased towards predicting re-hospitalization for most patients.
+
+- **Precision Varies**: Precision is high (above 87%) across all diagnoses, but not 100%. This indicates that while the model is good at identifying re-hospitalized patients, it still produces some false positives, predicting re-hospitalization for patients who weren't actually re-hospitalized.
+
+- **F1-Score**: The F1-scores are high across the board, reflecting the strong performance of the model in balancing precision and recall.
+
+- **High Precision and Recall (e.g., Diagnosis 389)**: Diagnoses like `389` have high precision and recall, indicating a strong and reliable connection between this diagnosis and re-hospitalization.
+ - **Lower Precision (e.g., Diagnosis 797)**: Diagnoses like `797` have slightly lower precision, suggesting that while the model identifies re-hospitalizations well, it also incorrectly predicts re-hospitalization for some patients.
