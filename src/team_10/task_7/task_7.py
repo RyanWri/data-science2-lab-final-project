@@ -1,8 +1,6 @@
 # ====================== Hospitalization2 Cleaning ======================
 
 # =========== Imports ===========
-import pandas as pd
-import numpy as np
 from src.team_10.utils import *
 from src.team_1.utils import *
 
@@ -13,6 +11,8 @@ export_path = f'../../data/{sheet}_Team_10.csv'
 data_dir_path = 'src/data'
 
 # =========== Functions ===========
+
+
 def count_nulls_in_reception_vs_not_null_release(df_cp):
     count = 0
     for i in range(len(df_cp['Diagnosis_In_Reception'])):
@@ -239,6 +239,38 @@ remove_comma(df_copy)
 
 rows_to_drop = df_copy.index[(df_copy['Releasing_Doctor'] == -1) & (df_copy['Diagnosis_In_Reception'] == -1) & (df_copy['Diagnosis_In_Release'] == -1)].tolist()
 print('Rows To Drop:', rows_to_drop, '\n')
+
+df_copy['Admission_Entry_Date'] = pd.to_datetime(df_copy['Admission_Entry_Date'], format='%d/%m/%Y %H:%M')
+df_copy['Release_Date'] = pd.to_datetime(df_copy['Release_Date'], format='%d/%m/%Y %H:%M:%S')
+
+df_copy['Admission_Days'] = (df_copy['Release_Date'] - df_copy['Admission_Entry_Date']).dt.round('D').abs().dt.days
+
+df_copy['Admission_Entry_Date2'] = pd.to_datetime(df_copy['Admission_Entry_Date2'], format='%d/%m/%Y %H:%M')
+df_copy['Days_Between_Admissions'] = (df_copy['Admission_Entry_Date2'] - df_copy['Release_Date']).dt.round('D').abs().dt.days
+
+duration_counts = df_copy['Days_Between_Admissions'].value_counts().sort_index()
+
+plot_basic_histogram(duration_counts, 'Duration (Days)', 'Count', 'Histogram of Duration in Days')
+
+number_of_quartiles = 3
+colors = ['red', 'green', 'blue']  # Make sure the number of colors matches the number of quartiles!
+
+bin_edges = calculate_optimal_split(df_copy, 'Days_Between_Admissions', number_of_quartiles)
+
+plot_multi_color_basic_histogram_for_optimal_split(df_copy, 'Days_Between_Admissions', bin_edges, colors,
+                                                   'Duration (Days)', 'Count',
+                                                   f'Histogram of Duration in Days Divided into {number_of_quartiles} Groups')
+
+
+print_optimal_groups(bin_edges, number_of_quartiles)
+
+# Encode the target column into categories according to the 3 quartiles
+df_copy['Period_Between_Admissions'] = 'long'
+df_copy.loc[df_copy['Days_Between_Admissions'] < bin_edges[1], 'Period_Between_Admissions'] = 'short'
+df_copy.loc[(df_copy['Days_Between_Admissions'] >= bin_edges[1]) & (df_copy['Days_Between_Admissions'] < bin_edges[2]), 'Period_Between_Admissions'] = 'mid'
+df_copy.loc[df_copy['Days_Between_Admissions'] >= bin_edges[2], 'Period_Between_Admissions'] = 'long'
+
+df_copy.drop(columns=['Patient', 'Admission_Medical_Record', 'Admission_Medical_Record2', 'Days_Between_Admissions'], inplace=True)
 
 df_copy.drop(rows_to_drop, inplace=True)
 
