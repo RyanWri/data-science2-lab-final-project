@@ -1,0 +1,6 @@
+pandas
+tensorflow
+scikit-learn
+matplotlib
+pyyaml
+openpyxl
