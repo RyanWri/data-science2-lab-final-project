@@ -1,12 +1,14 @@
-# Target variable
+# Research Question
+Is there statistical relationship between `DayOfWeek` and `Rehospitalization`?
+## Target variable
 * Type: discrete
 * Possible target labels: `"rehospitalized"`, `"non-rehospitalized"`
 
-# Feature variable
+## Feature variable
 * Type: discrete
 * Possible feature labels: `"Sunday"`, `"Monday"`, `"Tuesday"`, `"Wednesday"`, `"Thursday"`, `"Friday"`, `"Saturday"`
 
-# Analysis output
+## Analysis output
 ```
 Conditions for statistical relationship test are not met, because of definitive bias:
   Number of rehospitilied patients: 7033 VS number of non-rehospitilized patients: 0
