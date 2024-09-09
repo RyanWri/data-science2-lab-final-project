@@ -38,7 +38,9 @@ def merge_dataframes_left_join(
 
 def append_rehospitalized_status_to_patients(df, column_name="Patient"):
     """
-    append to each patient 2 columns: 1) if they were rehospitalized 2) how many times they were rehospitalized
+    append to each patient 2 columns:
+        1) how many times they were rehospitalized
+        2) classification on the average duration of rehospitalization
     Parameters:
     df (pd.DataFrame): DataFrame containing the column "Patient"
     Returns:
