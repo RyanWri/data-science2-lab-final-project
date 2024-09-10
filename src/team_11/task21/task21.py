@@ -1,4 +1,9 @@
 import pandas as pd
+from overrides import overrides
+
+from src.team_1.hospital_models.generic_torch_model import NeuralNetworkClassifier, ClassificationPipeline
+import torch.nn as nn
+import torch.optim as optim
 
 class Task21:
     @staticmethod
@@ -87,6 +92,166 @@ class Task21:
                         copy_df.loc[copy_df[column_to_label] == value,column_to_label] = labels[i]
 
         return copy_df
+
+class LogisticClassifier(NeuralNetworkClassifier):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(LogisticClassifier, self).__init__(input_size, hidden_size, num_classes)
+        self.model = nn.Sequential(
+            nn.Linear(input_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, num_classes),
+            nn.Softmax(dim=1)
+        )
+
+class LogisticClassificationPipeline(ClassificationPipeline):
+    def __init__(
+        self, df, features, target, hidden_size=10, test_size=0.3, random_state=42
+    ):
+        super(LogisticClassificationPipeline, self).__init__(df, features, target, hidden_size, test_size, random_state)
+
+
+    @overrides
+    def train_model(
+        self,
+        X_train,
+        y_train,
+        input_size,
+        num_classes,
+        num_epochs=100,
+        learning_rate=0.01,
+    ):
+        """
+        Train the neural network model.
+
+        Parameters:
+        -----------
+        X_train : torch.Tensor
+            The training data features.
+        y_train : torch.Tensor
+            The training data labels.
+        input_size : int
+            The number of input features.
+        num_classes : int
+            The number of output classes.
+        num_epochs : int
+            The number of epochs for training.
+        learning_rate : float
+            The learning rate for the optimizer.
+
+        Returns:
+        --------
+        model : NeuralNetworkClassifier
+            The trained model.
+        """
+        model = LogisticClassifier(
+            input_size=input_size, hidden_size=self.hidden_size, num_classes=num_classes
+        )
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.Adam(model.model.parameters(), lr=learning_rate)
+
+        # Training loop
+        for epoch in range(num_epochs):
+            outputs = model.forward(X_train)
+            loss = criterion(outputs, y_train)
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if (epoch + 1) % 10 == 0:
+                print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
+
+        return model
+
+
+class ResNet(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(ResNet, self).__init__()
+
+        # Define the model layers using nn.Sequential
+        self.model = nn.Sequential(
+            nn.Linear(input_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU()
+        )
+
+        # Output layer
+        self.output_layer = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        # Pass through the sequential layers
+        residual = self.model[:2](x)  # Output after first two layers
+        out = self.model[2:](residual)  # Output after second two layers
+
+        # Add the skip connection
+        out = out + residual
+
+        # Pass through the final output layer
+        out = self.output_layer(out)
+        return out
+
+class ResnetClassificationPipeline(ClassificationPipeline):
+    def __init__(
+        self, df, features, target, hidden_size=10, test_size=0.3, random_state=42
+    ):
+        super(ResnetClassificationPipeline, self).__init__(df, features, target, hidden_size, test_size, random_state)
+
+
+    @overrides
+    def train_model(
+        self,
+        X_train,
+        y_train,
+        input_size,
+        num_classes,
+        num_epochs=100,
+        learning_rate=0.01,
+    ):
+        """
+        Train the neural network model.
+
+        Parameters:
+        -----------
+        X_train : torch.Tensor
+            The training data features.
+        y_train : torch.Tensor
+            The training data labels.
+        input_size : int
+            The number of input features.
+        num_classes : int
+            The number of output classes.
+        num_epochs : int
+            The number of epochs for training.
+        learning_rate : float
+            The learning rate for the optimizer.
+
+        Returns:
+        --------
+        model : NeuralNetworkClassifier
+            The trained model.
+        """
+        model = ResNet(
+            input_size=input_size, hidden_size=self.hidden_size, num_classes=num_classes
+        )
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.Adam(model.model.parameters(), lr=learning_rate)
+
+        # Training loop
+        for epoch in range(num_epochs):
+            outputs = model.forward(X_train)
+            loss = criterion(outputs, y_train)
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if (epoch + 1) % 10 == 0:
+                print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
+
+        return model
+
+
 
 
 
