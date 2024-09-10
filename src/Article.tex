@@ -1,0 +1,376 @@
+
+\documentclass[a4paper,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[left=1cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{etoolbox} % For patching commands
+\usepackage{longtable} % for tables support
+\usepackage{microtype} % For fine control over letter spacing
+
+
+% enable shading (for code blocks)
+
+
+\usepackage{fontspec} % Required for polyglossia
+\setmainfont{DejaVu Sans} % DejaVu Sans supports both Hebrew and English
+
+% Set the main languages
+\usepackage{polyglossia} % Better multilingual support
+\setmainlanguage{english}
+\setotherlanguage{hebrew}
+
+\newfontfamily\hebrewfont{DejaVu Sans}
+\newfontfamily\englishfont{DejaVu Sans}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+
+% Global settings for table text
+\AtBeginEnvironment{tabular}{%
+  \addfontfeatures{LetterSpace=-1.0} % Reduce letter spacing
+  \small % Make text smaller
+}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+                          
+                                
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Define \tightlist 
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{Statistics cheat sheet}
+
+\begin{document}
+
+\raggedright
+% define font size
+\footnotesize
+%\small
+
+
+
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+\setlength{\columnsep}{0.5cm} % Adjust column separation
+
+\section{Task 9 - EDA}\label{task-9---eda}
+
+We used translation for our columns, you can see them in translation
+folder.
+
+We built a generic EDA (exploratory data analysis) for the common good.
+
+\subsection{Team 2 - Son and Gal}\label{team-2---son-and-gal}
+
+\subsubsection{Tasks:}\label{tasks}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0592}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4474}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2763}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2171}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Status
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Progress
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2 & Create a full Word file and Jupyter notebook & Written when everyone
+finishes their tasks. & Not Started \\
+9 & EDA of hospitalization1 & \textbf{Finished} & 100\% \\
+20 & Connection between Doctor Type and rehospitalization & Created
+Classification model, considered adjustments to the data. & 80\% \\
+26 & Connection between age and gender to rehospitalization from 16-19 &
+Pending for tasks 16-18 & Not Started \\
+38 & Dimension Reduction for hospitalization2 & Pending for task 20's
+pull request & 60\% \\
+46 & Editing conclusions chapter & Pending & Not Started \\
+Unique & PowerPoint Presentation & Pending & Not Started \\
+\end{longtable}
+
+\subsubsection{Conclusions:}\label{conclusions}
+
+\begin{verbatim}
+**Task 9: **
+Translations to hebrew, multiple diagnoses - top 10 dignoses:
+        Admission: 1. 78609
+                    2. 7865
+                    3. 78060
+                    4. 08889
+                    5. 2859
+                    6. 7895
+                    7. 486
+                    8. 4280
+                    9. 42731
+                    10. 7807
+        Release: all of the above and in addition 5990 & 514
+
+        No strong correlation between the different features.
+        Most hospitalizations were urgent and most were short, mainly a few days.
+        No drastic amount of patients in any specific unit.
+        Most hospitalization patients were excorted from home.
+**Task 20: **
+- Based on Doctor rank data(Senior/Not Senior), the ranks are split almost equally to 4  categories: Yes, No, ? and Depends from which date.
+- Based on the PIE chart, They're split almost equally in amount of doctors.
+- Based on Gradient Boosting Model that predicts rehospitalization based on Doctor rank, the accuracy is 50% meaniing we need Feature Extraction/Engineering in the preprocessing.
+\end{verbatim}
+
+מציאת קשר בין השכלה, מספר ילדים ומצב משפחתי לבין אישפוז חוזר בכל אחת
+מהאינדיקציות 16-18 depends on: - {[}{[}Task 4{]}{]} - {[}{[}Task
+16{]}{]}
+
+\#Task
+
+Data cleaning and completion for table: general data
+
+\#Task
+
+\begin{itemize}
+\tightlist
+\item
+  {[}{[}Task 4{]}{]}
+\item
+  {[}{[}Task 28{]}{]}
+\end{itemize}
+
+\#Team
+
+asdflkjqrgkajfdgqlekrjgqeropigjqegjqerpogijqe
+
+\#Task
+
+\subsubsection{Tasks:}\label{tasks-1}
+
+\paragraph{Task 4: Data Cleaning}\label{task-4-data-cleaning}
+
+\paragraph{Task 14: erBeforeHospitalization2
+EDA}\label{task-14-erbeforehospitalization2-eda}
+
+\paragraph{Task 14: erBeforeHospitalization2
+EDA:}\label{task-14-erbeforehospitalization2-eda-1}
+
+\paragraph{Task 16: optimal
+distribution}\label{task-16-optimal-distribution}
+
+\paragraph{Task 28: Find Connections}\label{task-28-find-connections}
+
+\paragraph{Task 32: Time Series
+Analysis}\label{task-32-time-series-analysis}
+
+\subsubsection{Comments:}\label{comments}
+
+For results and conclusions please download HTML file (not all plots can
+be seen in ipynb file)
+
+\#Team
+
+\section{Team 09}\label{team-09}
+
+We have implemented a CLI that enables to perform EDA on the file
+\texttt{rehospitalization.xlsx}.\\
+The file was originally uploaded to our course, in Moodle. The latest
+version we have worked with is in the directory \texttt{./assets}.
+
+Our EDA consists of a couple of missions: - \textbf{task\_06}: Missing
+values treatment in the sheet \texttt{erBeforeHospitalization2}.\\
+The output is available in the file
+\texttt{team\_09\_task\_06\_erBeforeHospitalization.csv} (directory
+\texttt{assets}). - \textbf{task\_15}: Parameter exploration in the
+\texttt{hospitalization2.csv}. The results \& conclusions are available
+in the document \texttt{team\_09\_task\_15\_hospitalization2\_EDA}
+(directory \texttt{assets}). - \textbf{task\_22}: Relationship
+exploration between the release day-of-week and rehospitalization. The
+output is available in the file
+\texttt{team\_09\_task\_22\_relationship\_day\_of\_week\_to\_rehospitalization.md}
+(directory \texttt{assets}). - \textbf{task\_31}: Timeseries analysis
+between 2nd admission date and rehospitalization occurrence. The output
+is available in the file
+\texttt{team\_09\_task\_31\_admission\_date\_timeseries\_analysis.md}
+(directory \texttt{assets}).
+
+\subsection{How to use the CLI?}\label{how-to-use-the-cli}
+
+\subsubsection{Fill in missing values for
+erBeforeHospitalization2}\label{fill-in-missing-values-for-erbeforehospitalization2}
+
+The full path for \texttt{erBeforeHospitalization2} includes a number of
+steps, each represented by a call to \texttt{main.py} below: - Transform
+sheet \texttt{erBeforeHospitalization2} to \texttt{ASCII} encoding only
+- Fill in missing values - Transform sheet
+\texttt{erBeforeHospitalization2} back to the original encoding - Create
+\texttt{erBeforeHospitalization2}
+
+\begin{verbatim}
+./main.py -v -i rehospitalization.xlsx -o rehospitalization.xlsx --ascii-encoded erBeforeHospitalization2 && \
+./main.py -v -i rehospitalization.xlsx -o rehospitalization.xlsx --missing-values erBeforeHospitalization2 && \
+./main.py -v -i rehospitalization.xlsx -o rehospitalization.xlsx --original-encoded erBeforeHospitalization2 && \
+./main.py -v -i rehospitalization.xlsx -o team09_task06_erBeforeHospitalization.csv --sheet-file erBeforeHospitalization2
+\end{verbatim}
+
+\subsubsection{Relationship test between day of release and
+rehospitalization}\label{relationship-test-between-day-of-release-and-rehospitalization}
+
+\begin{verbatim}
+./main.py -v -i rehospitalization.xlsx -o NA --relationship-test-release-date-rehospitalization
+\end{verbatim}
+
+\subsubsection{Time series analysis between 2nd admission date and
+rehospitalization
+occurrence}\label{time-series-analysis-between-2nd-admission-date-and-rehospitalization-occurrence}
+
+\begin{verbatim}
+./main.py -v -i rehospitalization.xlsx -o NA --time-series-analysis hospitalization2 Admission_Entry_Date
+\end{verbatim}
+
+\subsection{Note-worthy implementation
+details}\label{note-worthy-implementation-details}
+
+\subsubsection{task\_06: Missing values
+treatment}\label{task_06-missing-values-treatment}
+
+\texttt{erBeforeHospitalization2} sheet has many patients who were
+admitted to the 2nd hospitalization without going through the
+\texttt{ER} (\texttt{מיון}).\\
+These patients lack details about \texttt{ER}, which led us to
+supplement values that indicate that they did not visit the ER.\\
+The parameters were chosen as following: - \texttt{Medical\_Record} =
+\texttt{1000000} - \texttt{ev\_Admission\_Date} = \texttt{1900-01-01} -
+\texttt{ev\_Release\_Time} = \texttt{1900-01-01} -
+\texttt{Transport\_Means\_to\_ER} (\texttt{דרך\ הגעה\ למיון}) =
+\texttt{\textquotesingle{}No\ Emergency\ Visit\textquotesingle{}} -
+\texttt{ER} (\texttt{מיון}) =
+\texttt{\textquotesingle{}No\ Emergency\ Visit\textquotesingle{}} -
+\texttt{urgencyLevelTime} = \texttt{0} - \texttt{Diagnoses\_in\_ER}
+(\texttt{אבחנות\ במיון}) = \texttt{0} - \texttt{codeDoctor} = \texttt{0}
+
+Anyone who had a blank entry in the \texttt{Transport\_Means\_to\_ER}
+(\texttt{דרך\ הגעה\ למיון}) column was updated with
+\texttt{\textquotesingle{}Not\ provided\textquotesingle{}}.
+
+For those in the \texttt{ER} (\texttt{מיון}) column with the value
+\texttt{ICU} (\texttt{המחלקה\ לרפואה\ דחופה}) the missing values in the
+columns \texttt{Diagnoses\_in\_ER} (\texttt{אבחנות\ במיון}) and
+\texttt{codeDoctor} were updated with \texttt{1}.
+
+\subsubsection{Non-ASCII chars}\label{non-ascii-chars}
+
+Hebrew characters belong to a broader encoding family, \texttt{UTF-8}.\\
+While it is widely used, ``best-practice'' recommends to avoid its usage
+as it is impossible to know which 3rd party module will be used in the
+system as a whole. On the contrary, \texttt{ASCII} encoding is supported
+by virtually any 3rd party module. We have a dedicated mechanism, with
+module \texttt{HebEngTranslator} at its core, that transforms
+documents/tables to \texttt{ASCII} encoded only and back to the original
+format.
+
+\subsubsection{task\_15: Timeseries analysis between 2nd admission date
+and rehospitalization
+occurrence}\label{task_15-timeseries-analysis-between-2nd-admission-date-and-rehospitalization-occurrence}
+
+\emph{Load \& Handle Missing Data}\\
+Start by loading the dataset from a CSV file. Then count and print the
+number of missing values (NaNs) per column. Handle missing data by
+dropping rows with any missing values.
+
+\emph{Define Column Types}\\
+Dynamically identify numerical columns (\texttt{int64} and
+\texttt{float64}) and categorical columns (\texttt{object} and
+\texttt{category}).
+
+\emph{Descriptive Statistics}\\
+Print descriptive statistics for all columns, provide insights such as
+\texttt{mean}, \texttt{median}, \texttt{count}. Provide
+\texttt{standard\ deviation} insight for numerical data, count, unique
+values, and top values for categorical data.
+
+\emph{Visualization of Numerical Data}\\
+* Histograms: Generate histograms for all numerical columns to visualize
+their distributions. Use subplots to arrange these histograms in a grid
+that adapts to the number of numerical columns.\\
+* Box Plots: Create box plots for these columns to further analyze the
+distribution of data and identify outliers. Visualization of Categorical
+Data: * Bar Charts: For categorical data, generate bar charts to
+visualize the frequency distribution of the top 10 most frequent
+categories in each categorical column. Adjust the figure size, rotate
+x-axis labels for readability, and ensure that the layout does not have
+overlapping elements. Correlation Analysis: * Compute and visualize a
+correlation matrix for numerical columns using a heatmap, which helps
+identify any significant correlations between variables. Clustering of
+Individual Variables: * Normalize the numerical data using
+StandardScaler to prepare for clustering. Perform KMeans clustering for
+each numerical column individually, visualizing the clustering result as
+a scatter plot of the scaled data against its index, colored by cluster
+label. This visualization is particularly useful for identifying
+patterns or groups within individual features. Key Details: *
+Matplotlib's subplots are used extensively to create grids of plots. The
+grid size is dynamically adjusted based on the number of columns.
+Scikit-learn's StandardScaler and KMeans are used for data scaling and
+clustering, respectively. Seaborn is used for enhanced visualization
+like box plots and heatmaps. DataFrame operations, such as selecting
+data types, handling missing values, and indexing, are effectively
+utilized to prepare and manipulate the data.
+
+\subsubsection{task\_22: Relationship between release day of week and
+re-hospitalization}\label{task_22-relationship-between-release-day-of-week-and-re-hospitalization}
+
+None of the models should use this relationship.\\
+There is a definitive bias towards finding predictive ability between
+day of week and rehospitalization, as \emph{only patients who are
+rehospitalized are mentioned in sheet \texttt{hospitalization1}}. We
+have no data regarding patients who are not rehospitilized.\\
+This prevents the \emph{mandatory establishment of relationship
+existence} between day of week and rehospitalization, which makes any
+predictive ability describe above invalid.
+
+Here's the output of the relevant piece of logic to prove our statement:
+
+\begin{verbatim}
+(venv) maximc@Maxims-MacBook-Pro team_9 % ./main.py -i rehospitalization.xlsx -o NA --relationship-test-release-date-rehospitalization
+Type of target variable: discrete.
+        Possible target labels: "rehospitalized", "non-rehospitalized"
+Type of feature variable: discrete.
+        Possible target labels: "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+Conditions for statistical relationship test are not met, because of definitive bias:
+        Number of rehospitilied patients: 7033 VS number of non-rehospitilized patients: 0
+        We are unable to create "contingency table" that is a requirement for Chi-Squared or Fisher's Tests
+(venv) maximc@Maxims-MacBook-Pro team_9 %
+\end{verbatim}
+
+
+
+\end{document}

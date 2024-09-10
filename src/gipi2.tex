@@ -1,0 +1,108 @@
+
+\documentclass[a4paper,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[left=1cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{etoolbox} % For patching commands
+\usepackage{longtable} % for tables support
+\usepackage{microtype} % For fine control over letter spacing
+
+$if(graphics)$
+\usepackage{graphicx}% For including images
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+%\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setkeys{Gin}{width=\columnwidth,height=\columnwidth,keepaspectratio}
+
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+$endif$
+
+% enable shading (for code blocks)
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+
+\usepackage{fontspec} % Required for polyglossia
+\setmainfont{DejaVu Sans} % DejaVu Sans supports both Hebrew and English
+
+% Set the main languages
+\usepackage{polyglossia} % Better multilingual support
+\setmainlanguage{english}
+\setotherlanguage{hebrew}
+
+\newfontfamily\hebrewfont{DejaVu Sans}
+\newfontfamily\englishfont{DejaVu Sans}
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+
+% Global settings for table text
+\AtBeginEnvironment{tabular}{%
+  \addfontfeatures{LetterSpace=-1.0} % Reduce letter spacing
+  \small % Make text smaller
+}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+                          
+                                
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Define \tightlist 
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{Statistics cheat sheet}
+
+\begin{document}
+
+\raggedright
+% define font size
+\footnotesize
+%\small
+
+
+
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+\setlength{\columnsep}{0.5cm} % Adjust column separation
+
+$body$
+
+
+
+\end{document}
+
