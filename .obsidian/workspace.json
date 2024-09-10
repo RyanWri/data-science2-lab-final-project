@@ -1,0 +1,171 @@
+{
+  "main": {
+    "id": "8ea0e3d622b7a831",
+    "type": "split",
+    "children": [
+      {
+        "id": "9b4bd0c349e6bc53",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b00f5bef63d636db",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2bd6b7a43a0fe999",
+    "type": "split",
+    "children": [
+      {
+        "id": "412164f4873ee081",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8e731dcc380fb256",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "87ad42a76b07b19a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1a37255c7bda1eb9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a5a02c0e7720b94d",
+    "type": "split",
+    "children": [
+      {
+        "id": "2959142df3c74f56",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "03ddb860406541dd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "3cc187fc489b02d0",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c6ccc9552685e1f1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "ef2894cbd7148408",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "b00f5bef63d636db",
+  "lastOpenFiles": [
+    "src/gipi2.synctex(busy)",
+    "src/gipi2.log",
+    "src/gipi2.fls",
+    "src/pdflatex2208392.fls",
+    "src/pdflatex2206490.fls",
+    "src/pdflatex2206446.fls",
+    "src/team_9/assets/task31.pdf",
+    "src/team_9/team_09_task_31_admission_date_timeseries_analysis.md",
+    "src/team_9/team_09_task_22_relationship_day_of_week_to_rehospitalization.md",
+    "src/team_2/README.md",
+    "src/team_9/hospitalization_timeseries_analysis_by_month.png",
+    "src/Article.pdf",
+    "src/team_9/assets/team_09_task_22_relationship_day_of_week_to_rehospitalization.md",
+    "src/pdflatex2182031.fls",
+    "src/pdflatex2182024.fls",
+    "src/pdflatex2181936.fls",
+    "src/team_9/assets/hospitalization_timeseries_analysis_by_month.png",
+    "src/team_5/Team 5 - Amit and Ravit.md",
+    "src/team_5/Task 16.md",
+    "src/team_4/Task 28.md",
+    "src/team_4/Task 4.md",
+    "src/team_1/conclusion.md",
+    "src/team_4/Team 4 - Michael & Alon G.md",
+    "src/team_9/assets/team_09_task_31_admission_date_timeseries_analysis.md",
+    "TEAMS.md",
+    "src/team_9/README.md",
+    "README.md"
+  ]
+}

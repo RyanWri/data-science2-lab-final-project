@@ -1,5 +1,3 @@
-## Team 5 - Amit and Ravit
-
 ### Tasks:
 
 #### Task 4: Data Cleaning
@@ -11,3 +9,5 @@
 
 ### Comments:
 For results and conclusions please download HTML file (not all plots can be seen in ipynb file)
+
+#Team 

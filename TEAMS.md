@@ -6,9 +6,9 @@
 
 ## Team 3 - Aviv & Ben & Dana
 
-## Team 4 - Michael & Alon G
+## [[Team 4 - Michael & Alon G]]
 
-## Team 5 - Amit & Ravit
+## [[Team 5 - Amit and Ravit]]
 
 ## Team 6 - Liav & Noam
 
