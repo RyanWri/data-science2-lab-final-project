@@ -5,12 +5,14 @@ The file was originally uploaded to our course, in Moodle. The latest version we
 Our EDA consists of a couple of missions:
 - **task_06**: Missing values treatment in the sheet `erBeforeHospitalization2`.  
 The output is available in the file `team_09_task_06_erBeforeHospitalization.csv` (directory `assets`).
-- **task_15**: Parameter exploration in the `hospitalization2.csv`.
+- **task_15**: Parameter exploration in the `hospitalization2.csv`.  
 The results & conclusions are available in the document `team_09_task_15_hospitalization2_EDA` (directory `assets`).
-- **task_22**: Relationship exploration between the release day-of-week and rehospitalization.
+- **task_22**: Relationship exploration between the release day-of-week and rehospitalization.  
 The output is available in the file `team_09_task_22_relationship_day_of_week_to_rehospitalization.md` (directory `assets`).
-- **task_31**: Timeseries analysis between 2nd admission date and rehospitalization occurrence.
+- **task_31**: Timeseries analysis between 2nd admission date and rehospitalization occurrence.  
 The output is available in the file `team_09_task_31_admission_date_timeseries_analysis.md` (directory `assets`).
+- **task_38**: Overview of dimension reduction techniques suitable for sheet `hospitalization2`.  
+The output is available in the file `team_09_task_38_hospitalization2_dimesnion_reduction_overview.md` (directory `assets`).
 
 ## How to use the CLI?
 ### Fill in missing values for erBeforeHospitalization2
