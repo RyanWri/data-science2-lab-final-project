@@ -1,0 +1,15 @@
+Purpose:
+The goal was to identify an optimal statistical distribution that fits the number of days patients spend during their second hospitalization.
+
+Data Preprocessing:
+
+The data was first normalized to ensure comparability across different ranges of values.
+A histogram of the normalized hospitalization days was plotted to visually inspect the distribution pattern.
+Data Analysis:
+
+Multiple statistical distributions (e.g., Normal, Exponential, Log-normal) were tested to fit the data.
+The Kolmogorov-Smirnov test was employed to quantify the goodness-of-fit for these distributions.
+Result:
+The analysis suggested that while the data did not perfectly fit any single distribution, it exhibited characteristics most closely aligned with an exponential distribution. This implies that a higher proportion of patients have shorter hospital stays, while a smaller proportion have extended stays.
+
+
