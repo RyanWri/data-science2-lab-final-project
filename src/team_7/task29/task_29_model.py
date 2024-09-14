@@ -158,7 +158,7 @@ def define_models_params():
             {'n_neighbors': [3, 10, 15, 40], 'weights': ['uniform', 'distance']}
         ),
         'Neural Network': (
-            MLPClassifier(max_iter=1000),
+            MLPClassifier(max_iter=200),
             {'hidden_layer_sizes': [(50,), (100,), (50, 50)], 'activation': ['tanh', 'relu'], 'solver': ['adam', 'sgd'], 'learning_rate': ['constant', 'adaptive']}
         )
     }
