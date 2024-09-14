@@ -23,17 +23,18 @@ def create_categories_by_precentile(data: pd.DataFrame, groups_num: int):
     data['category_days_between_admissions'] = data['range_days_between_admissions'].map(bins_map) # Map the ranges to their corresponding category index
     return data
 
-# Load data 
-data = pd.read_excel(r'src\data\rehospitalization.xlsx', sheet_name='erBeforeHospitalization2')
+if __name__ == "__main__":
+    # Load data 
+    data = pd.read_excel(r'src\data\rehospitalization.xlsx', sheet_name='erBeforeHospitalization2')
 
-# Task 16:
-# Calculate the number of days between the first and second admissions
-data['days_between_admissions'] = (data['Admission_Entry_Date2'] - data['Release_Date']).dt.days
+    # Task 16:
+    # Calculate the number of days between the first and second admissions
+    data['days_between_admissions'] = (data['Admission_Entry_Date2'] - data['Release_Date']).dt.days
 
-# Histogram 
-create_plot(data, 'days_between_admissions', 'Histogram of Days Passed Between Admissions')
-# Convert the continuous 'days_between_admissions' into categories based on percentiles
-data = create_categories_by_precentile(data, 5)
-# Histogram
-create_plot(data, 'category_days_between_admissions', 'Histogram of Days Passed Between Admissions by Category')
-print('Categories created by days:', data['range_days_between_admissions'].unique())
+    # Histogram 
+    create_plot(data, 'days_between_admissions', 'Histogram of Days Passed Between Admissions')
+    # Convert the continuous 'days_between_admissions' into categories based on percentiles
+    data = create_categories_by_precentile(data, 5)
+    # Histogram
+    create_plot(data, 'category_days_between_admissions', 'Histogram of Days Passed Between Admissions by Category')
+    print('Categories created by days:', data['range_days_between_admissions'].unique())
