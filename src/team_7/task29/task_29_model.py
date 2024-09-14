@@ -194,7 +194,8 @@ def run_workflow(file_path):
     plot_confusion_matrix(best_model_name_18, X_test_18, y_test_18, y_pred_18, 'Duration_Category_18', classes_18)
 
 # Example usage:
-file_path = 'task_29_dataset_final.xlsx'
-run_workflow(file_path)
+if __name__ == "__main__":
+    file_path = 'task_29_dataset_final.xlsx'
+    run_workflow(file_path)
 
 # %%
