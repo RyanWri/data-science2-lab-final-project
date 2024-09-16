@@ -6,6 +6,8 @@ import torch.nn as nn
 import torch.optim as optim
 
 class Task21:
+    Translator = {'תאריך': 'Date', 'מחלקה': 'Unit', 'כמות קבלות': 'Amount Of Admissions', 'שיעור תפוסה': 'Occupation Rate',
+                  'כמות שוהים': 'Amount Of Patients',}
     @staticmethod
     def calculate_time_differences_between_columns(column1, column2, direction=2, scale='D'):
         """
@@ -92,6 +94,165 @@ class Task21:
                         copy_df.loc[copy_df[column_to_label] == value,column_to_label] = labels[i]
 
         return copy_df
+
+    @staticmethod
+    def add_release_rate_column(hospitalization_df, admissions_df, discharging_unit_col, release_date_cols):
+        """
+        Adds a 'Release_Rate' column to a copy of the hospitalization dataframe. The release rate is calculated
+        as the number of patients released on a given date divided by the number of admissions on that date.
+
+        Parameters:
+        - hospitalization_df: DataFrame containing hospitalization data with at least a 'Discharging Unit' column
+          and one or more columns representing release dates.
+        - admissions_df: DataFrame containing admissions data with columns for 'Unit', 'Date', and 'Amount Of Admissions'.
+        - discharging_unit_col: Name of the column in the hospitalization_df that represents the discharging unit.
+        - release_date_cols: List of columns in the hospitalization_df that represent the release dates.
+
+        Returns:
+        - A new DataFrame with the 'Release_Rate' column added.
+        """
+        # Create a copy of the input dataframes
+        hospitalization_df_copy = hospitalization_df.copy()
+        admissions_df_copy = admissions_df.copy()
+
+        # Convert release date columns to datetime and normalize in the copied dataframe
+        for col in release_date_cols:
+            hospitalization_df_copy[col] = pd.to_datetime(hospitalization_df_copy[col], errors='coerce').dt.normalize()
+
+        # Convert date in admissions dataframe copy to datetime and normalize
+        admissions_df_copy['Date'] = pd.to_datetime(admissions_df_copy['Date']).dt.normalize()
+
+        # Group by unit and date in the admissions table to get the number of admissions per date and unit
+        admissions_per_unit_date = admissions_df_copy.groupby(['Unit', 'Date']).agg(
+            {'Amount Of Admissions': 'sum'}).reset_index()
+
+        # Create a mapping from (unit, date) to admissions count
+        admissions_dict = admissions_per_unit_date.set_index(['Unit', 'Date'])['Amount Of Admissions'].to_dict()
+
+        # Count the number of releases for each unit and date
+        releases_count_df = pd.concat([
+            hospitalization_df_copy.groupby([discharging_unit_col, col]).size().reset_index(name='Release_Count')
+            for col in release_date_cols
+        ]).groupby([discharging_unit_col, col], as_index=False)['Release_Count'].sum()
+
+        # Rename columns properly
+        releases_count_df.columns = [discharging_unit_col, 'Release_Date', 'Release_Count']
+
+        # Create a mapping from (unit, date) to release count
+        releases_dict = releases_count_df.set_index([discharging_unit_col, 'Release_Date'])['Release_Count'].to_dict()
+
+        # Function to calculate the Release Rate for each row
+        def calculate_release_rate(row):
+            unit = row[discharging_unit_col]
+            total_releases = 0
+            total_admissions = 0
+
+            # Sum releases and admissions for all release dates (if available)
+            for col in release_date_cols:
+                release_date = row[col]
+                if pd.notna(release_date):
+                    total_releases += releases_dict.get((unit, release_date), 0)
+                    total_admissions += admissions_dict.get((unit, release_date), 0)
+
+            # Calculate release rate if there are admissions
+            if total_admissions > 0:
+                release_rate = round(total_releases / total_admissions, 2)
+            else:
+                release_rate = 0.0
+
+            return release_rate
+
+        # Apply the function to calculate the Release Rate and insert it after the Discharging Unit column
+        hospitalization_df_copy.insert(
+            hospitalization_df_copy.columns.get_loc(discharging_unit_col) + 1,
+            'Release_Rate',
+            hospitalization_df_copy.apply(calculate_release_rate, axis=1)
+        )
+
+        return hospitalization_df_copy
+
+    @staticmethod
+    def add_occupation_and_patient_columns(
+            hospitalization_df,
+            occupancy_df,
+            discharging_unit_col,
+            release_date_cols,
+            occupancy_unit_col,
+            occupancy_date_col,
+            occupancy_rate_col,
+            amount_patients_col):
+        """
+        Adds 'Occupation_Rate' and 'Amount of Patients' columns to a copy of the hospitalization dataframe.
+        The 'Occupation_Rate' is based on the data from the 'UnitsOccupancyRate' table for each discharging unit
+        on the given release dates, and 'Amount of Patients' represents the number of patients in each unit on that date.
+
+        Parameters:
+        - hospitalization_df: DataFrame containing hospitalization data with at least a 'Discharging Unit' column and release date columns.
+        - occupancy_df: DataFrame containing occupancy rate data with columns for 'Unit', 'Date', 'Occupancy Rate', and 'Amount of Patients'.
+        - discharging_unit_col: Name of the column in the hospitalization_df that represents the discharging unit.
+        - release_date_cols: List of columns in the hospitalization_df that represent the release dates.
+        - occupancy_unit_col: Name of the column in the occupancy_df that represents the unit.
+        - occupancy_date_col: Name of the date column in the occupancy_df.
+        - occupancy_rate_col: Name of the column in the occupancy_df that represents the occupancy rate.
+        - amount_patients_col: Name of the column in the occupancy_df that represents the amount of patients.
+
+        Returns:
+        - A new DataFrame with the 'Occupation_Rate' and 'Amount of Patients' columns added after the discharging unit column.
+        """
+        # Create a copy of the input dataframes
+        hospitalization_df_copy = hospitalization_df.copy()
+        occupancy_df_copy = occupancy_df.copy()
+
+        # Convert date columns to datetime and normalize
+        for col in release_date_cols:
+            hospitalization_df_copy[col] = pd.to_datetime(hospitalization_df_copy[col], errors='coerce').dt.normalize()
+        occupancy_df_copy[occupancy_date_col] = pd.to_datetime(occupancy_df_copy[occupancy_date_col],
+                                                               errors='coerce').dt.normalize()
+
+        # Create mappings from (unit, date) to occupancy rate and amount of patients
+        occupancy_rate_dict = occupancy_df_copy.set_index([occupancy_unit_col, occupancy_date_col])[
+            occupancy_rate_col].to_dict()
+        amount_patients_dict = occupancy_df_copy.set_index([occupancy_unit_col, occupancy_date_col])[
+            amount_patients_col].to_dict()
+
+        # Function to calculate the Occupation Rate and Amount of Patients for each row
+        def calculate_occupation_and_patients(row):
+            unit = row[discharging_unit_col]
+            occupation_rate = 0.0
+            amount_patients = 0
+
+            # Check for each release date column
+            for col in release_date_cols:
+                release_date = row[col]
+                if pd.notna(release_date):
+                    # Get the occupation rate and amount of patients for the unit and date
+                    occupation_rate = occupancy_rate_dict.get((unit, release_date), 0.0)
+                    amount_patients = amount_patients_dict.get((unit, release_date), 0)
+                    if occupation_rate > 0.0 or amount_patients > 0:
+                        break  # If a valid occupation rate or patient count is found, break the loop
+
+            return round(occupation_rate, 2), amount_patients
+
+        # Apply the function to calculate the Occupation Rate and Amount of Patients
+        results = hospitalization_df_copy.apply(calculate_occupation_and_patients, axis=1)
+        hospitalization_df_copy['Occupation_Rate'] = results.apply(lambda x: x[0])
+        hospitalization_df_copy['Amount of Patients'] = results.apply(lambda x: x[1])
+
+        # Insert the new columns right after the Discharging Unit column
+        hospitalization_df_copy.insert(
+            hospitalization_df_copy.columns.get_loc(discharging_unit_col) + 1,
+            'Occupation_Rate',
+            hospitalization_df_copy.pop('Occupation_Rate')
+        )
+
+        hospitalization_df_copy.insert(
+            hospitalization_df_copy.columns.get_loc(discharging_unit_col) + 2,
+            'Amount of Patients',
+            hospitalization_df_copy.pop('Amount of Patients')
+        )
+
+        return hospitalization_df_copy
+
 
 class LogisticClassifier(NeuralNetworkClassifier):
     def __init__(self, input_size, hidden_size, num_classes):
