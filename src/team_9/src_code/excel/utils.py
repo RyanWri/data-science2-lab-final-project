@@ -1,3 +1,4 @@
+from csv import writer as csv_writer
 from openpyxl import load_workbook
 from openpyxl.styles import Font
 from openpyxl.workbook.workbook import Workbook
@@ -36,7 +37,7 @@ class ExceltUtils:
       for cell in row:
         copied_cell = target_sheet.cell(row=cell.row, column=cell.col_idx, value=cell.value)
         copied_cell.number_format = cell.number_format
-    cls.adjust_cells_font_and_font_size(document[sheet_name])
+    cls.adjust_cells_font_and_font_size(target_sheet)
     return result
   
   @classmethod
@@ -44,7 +45,14 @@ class ExceltUtils:
     return load_workbook(abs_file_path)
   
   @classmethod
-  def save_to_file(cls, document: Workbook, abs_file_path: str) -> None:
+  def save_to_csv_file(cls, sheet: Worksheet, abs_file_path: str) -> None:
+    with open(abs_file_path, "w", newline="", encoding="utf-8") as csvfile:
+      csvwriter = csv_writer(csvfile)
+      for row in sheet.iter_rows(values_only=True):
+        csvwriter.writerow(row)
+
+  @classmethod
+  def save_to_excel_document(cls, document: Workbook, abs_file_path: str) -> None:
     document.save(abs_file_path)
 
   @classmethod
