@@ -197,3 +197,34 @@ class EDA:
             self.df["Patient"].isin(users_with_multiple_records)
         ]
         return df_rehospitalized_patients
+    
+    def clean_nan(self, column, fill_value=None):
+        """
+        Clean a specific column in the dataset by:
+        - Removing rows where more than 50% of values in the specified column are missing.
+        - Filling missing values in the remaining rows of the specified column with the given fill value.
+
+        Parameters:
+        -----------
+        column : str
+            The column to clean for NaN values.
+        fill_value : Any
+            The value used to fill missing data in rows with less than 50% missing.
+
+        Conclusion:
+        -----------
+        This method allows column-specific cleaning of NaN values,
+        helping tailor the cleaning process to each column's characteristics.
+        """
+        # Calculate the percentage of missing values in the specified column
+        missing_percent_column = self.df[column].isnull().mean()
+
+        if missing_percent_column > 0.5:
+            # Remove rows where more than 50% of values in the specified column are missing
+            self.df = self.df[self.df[column].notna()]
+            print(f"Rows with more than 50% missing in '{column}' have been removed.")
+        else:
+            # Fill remaining NaN values in the specified column with the given fill_value
+            fill_value = self.df[column].mode()[0] if fill_value is None else fill_value
+            self.df[column] = self.df[column].fillna(fill_value)
+            print(f"Missing values in '{column}' have been filled with {fill_value}.")
