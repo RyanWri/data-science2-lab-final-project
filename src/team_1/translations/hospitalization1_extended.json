@@ -1,0 +1,12 @@
+{
+    "דחוף": "Urgent",
+    "מוזמן": "Invited",
+    "אשפוז יום": "Day_hospitalization",
+    "מביתו": "From_home",
+    "ממוסד": "From_institute",
+    "אחר": "Other",
+    "ממרפאה": "From_clinic",
+    "מבית חולים אחר": "From_other_hospital",
+    "שוחרר לביתו": "Released_home",
+    "שוחרר למוסד": "Released_to_institute"
+}
