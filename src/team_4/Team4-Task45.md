@@ -8,7 +8,7 @@
 - Weight, Height, BMI  
 - Education, Number of children, and Marital status  
 
-### Target_variables
+### Target variables
 Each group is analysed against 3 types of indications (targets) individually:  
 - Time **between 1st and 2nd** hospitalisations only, categorical: `Short` (0 to 8 days), `Medium` (9 to 27 days), `Long` (28 days and more)  
 - Time **between individual** hospitalisations, categorical: same as above  
@@ -41,6 +41,7 @@ In all 4 target indications we observe a decrease in the training loss  for up t
 | accuracy     |           |        | 0.33     | 751     |
 | macro avg    | 0.32      | 0.32   | 0.30     | 751     |
 | weighted avg | 0.32      | 0.33   | 0.31     | 751     |
+
 **Table 1:** Model evaluation scores on the test set  
 In all target indications we observe that all scores are very low 
 
@@ -62,9 +63,9 @@ There is no correlation between the **age** and **gender** of the patient and an
 ## Weight, Height and Body Mass Index
 
 ### Setting
-A similar setting to [Age and Gender](#Age and Gender) has been employed, with different...   
+A similar setting to [Age and Gender](#Age%20and%20Gender) has been employed, with different...   
 
-- predictor features:  
+- predictor features:   
 	- **Weight**, kg, integer   
 	- **Height**, cm, integer   
 	- **BMI**, integer   
@@ -113,15 +114,16 @@ In summary, it’s possible that the features provided are not significant predi
 	- A considerable proportion of individual records were inflated due to duplicate structure of  the data. This had to be pre-processed as well.   
 
 ### Setting
-A similar setting to [[#Age and Gender]] has been employed as well, with different:  
-- **predictor features**:  
+A similar setting to [Age and Gender](#Age%20and%20Gender) has been employed as well, with different:  
+
+- **predictor features:**  
 	- **Occupation**, 22 categories (ex. Construction, Education, Retail, etc.)   
 	- **Number of children**, integer   
 	- **Marital status**, 5 categories: `married`, `divorced`, `widowed`, `single`, `separated`  
 
 - **model selection** process on a comprehensive battery of models has been tried, each grid searched over a broad spectrum of hyper parameters   
 	- The models include mostly **classical ML** models, such as Logistic Regression, Random Forest, Gradient Boosting, Support Vector Machine, XGBoost and a simple Neural Network among others.  
-	- For each of the [hospitalisation duration indications](#Target_variables), the best performing model was chosen based on accuracy.  
+	- For each of the [hospitalisation duration indications](#Target%20variables), the best performing model was chosen based on accuracy.  
 
 ### Results
 Even though, for different target indications, different model turned up best, none of the models achieved satisfactory results.   
