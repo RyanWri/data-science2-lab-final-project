@@ -1,6 +1,9 @@
 import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sns
 from overrides import overrides
-
+from scipy import stats
+from sklearn.preprocessing import LabelEncoder
 from src.team_1.hospital_models.generic_torch_model import NeuralNetworkClassifier, ClassificationPipeline
 import torch.nn as nn
 import torch.optim as optim
@@ -252,6 +255,56 @@ class Task21:
         )
 
         return hospitalization_df_copy
+
+
+    @staticmethod
+    def analyze_discharging_unit_relationship(data):
+        # Use LabelEncoder to encode the categorical rehospitalization time for statistical testing
+        le = LabelEncoder()
+        data['Days_To_Rehospitalization_encoded'] = le.fit_transform(data['Days_To_Rehospitalization'])
+
+        # Inverse transform to get the original labels back
+        rehospitalization_labels =['Long','Medium','Short']
+
+        # Plot the distribution of rehospitalization time across different discharging units using boxplot and barplot
+        plt.figure(figsize=(12, 6))
+
+        # Box plot showing the spread of rehospitalization time for each discharging unit, with correct labels and colors
+        plt.subplot(1, 2, 1)
+        sns.boxplot(x='Days_To_Rehospitalization', y='Discharging Unit', data=data, palette="Set2",hue='Days_To_Rehospitalization',
+                    legend=False)
+        plt.title('Discharging Unit vs Rehospitalization Time')
+        plt.ylabel('Rehospitalization Time')
+        plt.xticks([0, 1, 2], rehospitalization_labels)
+
+        # Bar plot showing the count of each rehospitalization time category per discharging unit, with correct labels
+        plt.subplot(1, 2, 2)
+        sns.countplot(x='Discharging Unit', hue='Days_To_Rehospitalization', data=data, palette="Set2")
+        plt.title('Rehospitalization Time Distribution by Discharging Unit')
+        plt.legend(title='Rehospitalization Time', loc='upper right', labels=rehospitalization_labels)
+
+        plt.tight_layout()
+        plt.show()
+
+        # Perform ANOVA to see if there are significant differences between rehospitalization time across discharging units
+        anova_result = stats.f_oneway(
+            data[data['Discharging Unit'] == 1]['Days_To_Rehospitalization_encoded'],
+            data[data['Discharging Unit'] == 2]['Days_To_Rehospitalization_encoded'],
+            data[data['Discharging Unit'] == 3]['Days_To_Rehospitalization_encoded'],
+            data[data['Discharging Unit'] == 4]['Days_To_Rehospitalization_encoded'],
+            data[data['Discharging Unit'] == 5]['Days_To_Rehospitalization_encoded']
+        )
+
+        # Display the ANOVA result
+        print(f"ANOVA Test Result: F-statistic = {anova_result.statistic}, p-value = {anova_result.pvalue}")
+
+        # Conclusion based on the ANOVA result
+        if anova_result.pvalue < 0.05:
+            print("Conclusion: The discharging unit has a statistically significant effect on rehospitalization time.")
+        else:
+            print("Conclusion: No statistically significant effect of the discharging unit on rehospitalization time.")
+
+
 
 
 class LogisticClassifier(NeuralNetworkClassifier):
