@@ -3,36 +3,27 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-
-
-def read_excel_sheet(file_path, sheet_name):
-    """
-    Reads a specific sheet from an Excel file.
-    Parameters:
-    file_path (str): The path to the Excel file.
-    sheet_name (str): The name of the sheet to be read.
-    Returns:
-    pd.DataFrame: The data from the specified sheet as a pandas DataFrame.
-    """
-    try:
-        # Read the specified sheet
-        df = pd.read_excel(file_path, sheet_name=sheet_name)
-        return df
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+import json
     
-def rename_columns(dataframe, column_mapping):
+def rename_columns_from_json(dataframe, directory_path, json_file_name):
     """
-    Rename columns in the DataFrame using a given mapping dictionary.
+    Rename columns in the DataFrame using a mapping dictionary from a JSON file.
 
     Parameters:
     dataframe (pd.DataFrame): The DataFrame with Hebrew column names.
-    column_mapping (dict): A dictionary where keys are Hebrew column names and values are English names.
+    directory_path (str): The directory path where the JSON file is located.
+    json_file_name (str): The name of the JSON file containing the column mapping (Hebrew to English).
 
     Returns:
     pd.DataFrame: The DataFrame with renamed columns.
     """
+    # Construct the full path to the JSON file
+    json_file_path = os.path.join(directory_path, json_file_name)
+
+    # Load the column mapping from the JSON file
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        column_mapping = json.load(f)
+    
     # Rename columns using the mapping
     dataframe_renamed = dataframe.rename(columns=column_mapping)
     
@@ -206,3 +197,34 @@ class EDA:
             self.df["Patient"].isin(users_with_multiple_records)
         ]
         return df_rehospitalized_patients
+    
+    def clean_nan(self, column, fill_value=None):
+        """
+        Clean a specific column in the dataset by:
+        - Removing rows where more than 50% of values in the specified column are missing.
+        - Filling missing values in the remaining rows of the specified column with the given fill value.
+
+        Parameters:
+        -----------
+        column : str
+            The column to clean for NaN values.
+        fill_value : Any
+            The value used to fill missing data in rows with less than 50% missing.
+
+        Conclusion:
+        -----------
+        This method allows column-specific cleaning of NaN values,
+        helping tailor the cleaning process to each column's characteristics.
+        """
+        # Calculate the percentage of missing values in the specified column
+        missing_percent_column = self.df[column].isnull().mean()
+
+        if missing_percent_column > 0.5:
+            # Remove rows where more than 50% of values in the specified column are missing
+            self.df = self.df[self.df[column].notna()]
+            print(f"Rows with more than 50% missing in '{column}' have been removed.")
+        else:
+            # Fill remaining NaN values in the specified column with the given fill_value
+            fill_value = self.df[column].mode()[0] if fill_value is None else fill_value
+            self.df[column] = self.df[column].fillna(fill_value)
+            print(f"Missing values in '{column}' have been filled with {fill_value}.")

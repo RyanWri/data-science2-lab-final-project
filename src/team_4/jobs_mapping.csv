@@ -1,0 +1,453 @@
+job,NACE_category,Category_description
+Jשמל,G,Wholesale and Retail Trade; Repair Services
+אב בית,S,Other
+אבטחה,N,Administrative and Support
+אגרונום,A,Agriculture Forestry and Fishing
+אוויר,H,Transportation and Storage
+אוטובוס,H,Transportation and Storage
+אומן,R,Arts Entertainment and Recreation
+אונקולוג,Q,Human Health and Social Work
+אופניים,G,Wholesale and Retail Trade; Repair Services
+אחות,Q,Human Health and Social Work
+אחות מוסמכת,Q,Human Health and Social Work
+אחזקה באינבורסיטה,P,Education
+אינסטלטור,F,Construction
+אינסלטור,F,Construction
+אלביט,C,Manufacturing
+אלעל,H,Transportation and Storage
+אלקטרונאי,C,Manufacturing
+אמן,R,Arts Entertainment and Recreation
+אסיר,O,Public Administration and Defence
+בבית,T,Household and Self-Employed
+בבית חולים,Q,Human Health and Social Work
+בבית מלון,I,Accommodation and Food
+בבניין,F,Construction
+בבנק פועלים,K,Financial and Insurance
+בבתי זיקוק,C,Manufacturing
+בגן ילדים,P,Education
+בגסטרו,Q,Human Health and Social Work
+בדיקות קרינה,M,Professional Scientific and Technical
+בונה צעצועים,C,Manufacturing
+בזק,J,Information and Communication
+בחסד לנזקקים,Q,Human Health and Social Work
+בטוח לאומי,O,Public Administration and Defence
+בטחון,N,Administrative and Support
+בטקסטיל,C,Manufacturing
+ביד למכירת,G,Wholesale and Retail Trade; Repair Services
+ביטוח,K,Financial and Insurance
+ביטחון,N,Administrative and Support
+בילדים,Q,Human Health and Social Work
+בית דפוס,C,Manufacturing
+בית ספר,P,Education
+בלוגיסטיקה,H,Transportation and Storage
+במוסד,Q,Human Health and Social Work
+במטבח,I,Accommodation and Food
+במטחון,N,Administrative and Support
+במסחר,G,Wholesale and Retail Trade; Repair Services
+במפעל,C,Manufacturing
+במשק,A,Agriculture Forestry and Fishing
+במשק בית,T,Household and Self-Employed
+בנאי,F,Construction
+בניין,F,Construction
+בנק,K,Financial and Insurance
+בנק פועלים,K,Financial and Insurance
+בנקאי,K,Financial and Insurance
+בסופר,G,Wholesale and Retail Trade; Repair Services
+בספרות,P,Education
+בפיצריה,I,Accommodation and Food
+בקרת איכות,M,Professional Scientific and Technical
+ברזלן,F,Construction
+בשגרירות,O,Public Administration and Defence
+בשווקים,G,Wholesale and Retail Trade; Repair Services
+גבייה בכביש,O,Public Administration and Defence
+גגן,F,Construction
+גינון,A,Agriculture Forestry and Fishing
+גנן,A,Agriculture Forestry and Fishing
+גננת,P,Education
+גרפיקאי,M,Professional Scientific and Technical
+דודי שמש,F,Construction
+דוואר,H,Transportation and Storage
+דוקטור לפיזיקה,P,Education
+דוקטור מפקד ברשת,O,Public Administration and Defence
+דיטאנית אחות,Q,Human Health and Social Work
+דין,M,Professional Scientific and Technical
+דר לפיזיקה,P,Education
+האחרונה,O,Public Administration and Defence
+הבטחון,N,Administrative and Support
+הביטחון,N,Administrative and Support
+הוראה,P,Education
+החוץ,O,Public Administration and Defence
+הייטק,J,Information and Communication
+המשטרה,O,Public Administration and Defence
+הנדסאי,M,Professional Scientific and Technical
+הנדסאי בניין,F,Construction
+הנדסאי מזגנים,F,Construction
+הנדסאית,M,Professional Scientific and Technical
+הנדסה,M,Professional Scientific and Technical
+הנדסת,M,Professional Scientific and Technical
+הנדסת חשמל,M,Professional Scientific and Technical
+הנדסת מזון איגוד,C,Manufacturing
+הנהלת חשבונות,K,Financial and Insurance
+הסעות,H,Transportation and Storage
+התעשיה האווירית,C,Manufacturing
+זמכירה,G,Wholesale and Retail Trade; Repair Services
+חווה טיפולית,Q,Human Health and Social Work
+חוסה במוסד,Q,Human Health and Social Work
+חוסה במעון נעורים,Q,Human Health and Social Work
+חוקר פרטי,M,Professional Scientific and Technical
+חינוך מיוחד,P,Education
+חלקאי,A,Agriculture Forestry and Fishing
+חנות,G,Wholesale and Retail Trade; Repair Services
+חנות פיצוחים,G,Wholesale and Retail Trade; Repair Services
+חנות פרקטים,G,Wholesale and Retail Trade; Repair Services
+חנות תכשיטים,G,Wholesale and Retail Trade; Repair Services
+חקלאות,A,Agriculture Forestry and Fishing
+חקלאי,A,Agriculture Forestry and Fishing
+חקלאי משתלה,A,Agriculture Forestry and Fishing
+חקלאי עצמאי במפעל,A,Agriculture Forestry and Fishing
+חקלאית,A,Agriculture Forestry and Fishing
+חשב כספים,K,Financial and Insurance
+חשבונאות,K,Financial and Insurance
+חשמל,D,Electricity Gas Steam and Air Conditioning Supply
+חשמל סולארי,D,Electricity Gas Steam and Air Conditioning Supply
+חשמלאי,D,Electricity Gas Steam and Air Conditioning Supply
+טבח,I,Accommodation and Food
+טבחית,I,Accommodation and Food
+טבע,C,Manufacturing
+טייח,F,Construction
+טיפול בילדים סייעת,Q,Human Health and Social Work
+טיפול בקשישים,Q,Human Health and Social Work
+טכאי שיניים,Q,Human Health and Social Work
+טכנאי,M,Professional Scientific and Technical
+טכנאי אלקטרוניקה,M,Professional Scientific and Technical
+טכנאי חשמל,D,Electricity Gas Steam and Air Conditioning Supply
+טכנאי מטוסים,M,Professional Scientific and Technical
+טכנאי מכונות תפירה,C,Manufacturing
+טכנאי רנטגן,Q,Human Health and Social Work
+טכנאית רנטגן,Q,Human Health and Social Work
+טכנולוגיה,J,Information and Communication
+טסטר,M,Professional Scientific and Technical
+יהלומן,C,Manufacturing
+יועץ בטחוני,M,Professional Scientific and Technical
+יועץ המים,M,Professional Scientific and Technical
+יועץ לאדריכלים,M,Professional Scientific and Technical
+יועץ מס,K,Financial and Insurance
+יועצת יופי,S,Other
+יועצת מס,K,Financial and Insurance
+יועצת תעסוקה,N,Administrative and Support
+ימלטח,N,Administrative and Support
+יעוץ תעשייתי,M,Professional Scientific and Technical
+כימאית,M,Professional Scientific and Technical
+כירורג,Q,Human Health and Social Work
+ככובסת,S,Other
+כלכלן,K,Financial and Insurance
+כללית,Q,Human Health and Social Work
+כמורה,P,Education
+כמזכירה,N,Administrative and Support
+כמטפלת,Q,Human Health and Social Work
+כמטפלת בקשיש,Q,Human Health and Social Work
+כמנהלת פדגוגי אזורי,P,Education
+כמסגר,F,Construction
+כספות,C,Manufacturing
+כעצמאי,M,Professional Scientific and Technical
+לוגיסטיקה הביטחון,N,Administrative and Support
+ליטוש תכשיטים,C,Manufacturing
+מאבטח,N,Administrative and Support
+מאפיה,I,Accommodation and Food
+מבקר בנייה עצמאי,F,Construction
+מבקרת בית החולים,Q,Human Health and Social Work
+מדינה,O,Public Administration and Defence
+מדעי המחשב,J,Information and Communication
+מדריך נוער בסיכון,Q,Human Health and Social Work
+מדריך תיירים,I,Accommodation and Food
+מהנדס,M,Professional Scientific and Technical
+מהנדס אלקטרוניקה,M,Professional Scientific and Technical
+מהנדס בניין,F,Construction
+מהנדס חשמל,M,Professional Scientific and Technical
+מהנדס מכונות,M,Professional Scientific and Technical
+מהנדסת,M,Professional Scientific and Technical
+מוזיקאי,R,Arts Entertainment and Recreation
+מוכנאי,C,Manufacturing
+מוכרת בחנות,G,Wholesale and Retail Trade; Repair Services
+מוסך,G,Wholesale and Retail Trade; Repair Services
+מורה,P,Education
+מורה בדימוס,P,Education
+מורה בתיכון,P,Education
+מורה דרך,I,Accommodation and Food
+מורה לאנגלית,P,Education
+מורה למוזיקה,R,Arts Entertainment and Recreation
+מורה למתמטיקה,P,Education
+מורה לנהיגה,P,Education
+מורה לספורט,P,Education
+מורה לעברית,P,Education
+מורה לפיזיקה,P,Education
+מורה לפסנתר,R,Arts Entertainment and Recreation
+מורה מורת דרך,P,Education
+מורה נהיגה,P,Education
+מורה פיסיקה,P,Education
+מורת,P,Education
+מזגנים,D,Electricity Gas Steam and Air Conditioning Supply
+מזגרות,F,Construction
+מזכיר מושב משמרת,N,Administrative and Support
+מזכירה,N,Administrative and Support
+מזכירה במכבי,Q,Human Health and Social Work
+מחלק עיתונים,H,Transportation and Storage
+מחסן,N,Administrative and Support
+מחסנאי,N,Administrative and Support
+מחשבים,J,Information and Communication
+מחשוב,J,Information and Communication
+מטבח,I,Accommodation and Food
+מטפל,Q,Human Health and Social Work
+מטפל בקשישים,Q,Human Health and Social Work
+מטפלת,Q,Human Health and Social Work
+מטפלת בקשישים,Q,Human Health and Social Work
+מטפלת פרטית,Q,Human Health and Social Work
+מידע החולה משפחה,Q,Human Health and Social Work
+מיילדת,Q,Human Health and Social Work
+מיקרוביולוג,Q,Human Health and Social Work
+מכואני טרקטור,C,Manufacturing
+מכולת,G,Wholesale and Retail Trade; Repair Services
+מכון יופי,S,Other
+מכונאות,C,Manufacturing
+מכונאי,C,Manufacturing
+מכונאי מטוסים,M,Professional Scientific and Technical
+מכירות,G,Wholesale and Retail Trade; Repair Services
+מכנואי מטוסים,M,Professional Scientific and Technical
+מכניקה,C,Manufacturing
+מלווה בחינוך המיוחד,Q,Human Health and Social Work
+מלווה ילדים,Q,Human Health and Social Work
+מלמדת ספרות במכללה,P,Education
+מנהל,M,Professional Scientific and Technical
+מנהל אולם ספורט,R,Arts Entertainment and Recreation
+מנהל איכות הסביבה,M,Professional Scientific and Technical
+מנהל ביצוע,F,Construction
+מנהל בית,N,Administrative and Support
+מנהל בנק,K,Financial and Insurance
+מנהל בקופת חולים,Q,Human Health and Social Work
+מנהל חבל הסוכנות,O,Public Administration and Defence
+מנהל חדר אוכל,I,Accommodation and Food
+מנהל חשבונות,K,Financial and Insurance
+מנהל מכירות,G,Wholesale and Retail Trade; Repair Services
+מנהל מעבדה,M,Professional Scientific and Technical
+מנהל סוכני ביטוח,K,Financial and Insurance
+מנהל פרוייקט בתעשיה,M,Professional Scientific and Technical
+מנהל פרוייקטים בבניין,F,Construction
+מנהל פרויקטים,M,Professional Scientific and Technical
+מנהל רפואית,Q,Human Health and Social Work
+מנהל שיווק,M,Professional Scientific and Technical
+מנהל תוכניות עבודה,N,Administrative and Support
+מנהל תחנת מוניות,H,Transportation and Storage
+מנהלמחסן,N,Administrative and Support
+מנהלת,N,Administrative and Support
+מנהלת במודיעין שדה,O,Public Administration and Defence
+מנהלת בנק,K,Financial and Insurance
+מנהלת חשבונאות,K,Financial and Insurance
+מנהלת חשבונות,K,Financial and Insurance
+מנהלת מפעל עסק,M,Professional Scientific and Technical
+מנכל,M,Professional Scientific and Technical
+מסגר,F,Construction
+מסגר כללית,F,Construction
+מסגרות,F,Construction
+מסחר,G,Wholesale and Retail Trade; Repair Services
+מסעדה,I,Accommodation and Food
+מסרדית,N,Administrative and Support
+מעבדה,M,Professional Scientific and Technical
+מעצבת מטבחים,M,Professional Scientific and Technical
+מפעל,C,Manufacturing
+מפעל גומי,C,Manufacturing
+מפקח בניה,F,Construction
+מרפאות חוץ במוסדינו,Q,Human Health and Social Work
+מרצה,P,Education
+מרצה בטכניון,P,Education
+מרצה בכיר לסוציולוגיה,P,Education
+מרצה התיירות,P,Education
+מרצה חוקר באקדמיה,P,Education
+מרצה לתולדות האמנות,P,Education
+מרצה שיווק,P,Education
+משק בית,T,Household and Self-Employed
+משתלה,A,Agriculture Forestry and Fishing
+מתווך דירות,L,Real Estate
+מתורגן,N,Administrative and Support
+מתנדב,O,Public Administration and Defence
+מתנדב בבית החולים,Q,Human Health and Social Work
+מתנדב במכבי,Q,Human Health and Social Work
+נגר,C,Manufacturing
+נדלן,L,Real Estate
+נהג,H,Transportation and Storage
+נהג אוטובוס,H,Transportation and Storage
+נהג אמבולנס,H,Transportation and Storage
+נהג הסעות ילדים,H,Transportation and Storage
+נהג מונית,H,Transportation and Storage
+נהג משאית,H,Transportation and Storage
+נהנלת חשבונות,K,Financial and Insurance
+ניקיון,N,Administrative and Support
+נפש,Q,Human Health and Social Work
+נציג יצרנים,M,Professional Scientific and Technical
+נקיון,N,Administrative and Support
+נשיא,O,Public Administration and Defence
+סויאלית,Q,Human Health and Social Work
+סוכן ברזל,M,Professional Scientific and Technical
+סוכנות נסיעות,N,Administrative and Support
+סוכנת נסיעו,N,Administrative and Support
+סונול,D,Electricity Gas Steam and Air Conditioning Supply
+סופר,G,Wholesale and Retail Trade; Repair Services
+סוציאלית,Q,Human Health and Social Work
+סייעת,Q,Human Health and Social Work
+סייעת בגן,Q,Human Health and Social Work
+סייעת בהסעות,Q,Human Health and Social Work
+סיעודי,Q,Human Health and Social Work
+ספר,G,Wholesale and Retail Trade; Repair Services
+ספרית,G,Wholesale and Retail Trade; Repair Services
+עבודה ביתי בניהול,T,Household and Self-Employed
+עודת,M,Professional Scientific and Technical
+עוזר בבית ספר,P,Education
+עוזר לבת בקטרינג,I,Accommodation and Food
+עורות,C,Manufacturing
+עורך דין,M,Professional Scientific and Technical
+עורכת חשבון,K,Financial and Insurance
+עזר,Q,Human Health and Social Work
+עיריה,O,Public Administration and Defence
+עירייה,O,Public Administration and Defence
+עיריית,O,Public Administration and Defence
+עיתונאית,J,Information and Communication
+עסק וילונות,G,Wholesale and Retail Trade; Repair Services
+עסק פרטי,S,Other
+עסקים,M,Professional Scientific and Technical
+עפר,F,Construction
+עצמאי,T,Household and Self-Employed
+עצמאי המטוסים,H,Transportation and Storage
+עצמאי מכניקה,C,Manufacturing
+עצמאית,T,Household and Self-Employed
+עקרת,T,Household and Self-Employed
+עקרת בית,T,Household and Self-Employed
+עקרת הבית,T,Household and Self-Employed
+פועל בניין,F,Construction
+פזיותרפיסט,Q,Human Health and Social Work
+פחחות,C,Manufacturing
+פיצוחייה,G,Wholesale and Retail Trade; Repair Services
+פיקוח ענף הבניין,F,Construction
+פמאי תיאטרון,R,Arts Entertainment and Recreation
+פסיכולוגית,Q,Human Health and Social Work
+פסיכיאטרי,Q,Human Health and Social Work
+פקיד,N,Administrative and Support
+פקידה,N,Administrative and Support
+פקידה בבנק,K,Financial and Insurance
+פקידה בדיור מוגן,Q,Human Health and Social Work
+פקידות,N,Administrative and Support
+פרופסור לרפואה,P,Education
+פרטית,S,Other
+פרסום ודפוס,J,Information and Communication
+צבא,O,Public Administration and Defence
+צבעי,F,Construction
+צהל,O,Public Administration and Defence
+צלם,R,Arts Entertainment and Recreation
+צלמת,R,Arts Entertainment and Recreation
+צלמת ילדים,R,Arts Entertainment and Recreation
+קבלן,F,Construction
+קבלן בניין,F,Construction
+קבלן בנין,F,Construction
+קבלן זפת,F,Construction
+קבלן צנרת,F,Construction
+קבלן שיפוצים,F,Construction
+קבע,O,Public Administration and Defence
+קוסמטיקאיית,S,Other
+קוסמטיקאית,S,Other
+קופאית בסופר,G,Wholesale and Retail Trade; Repair Services
+קנדטוריה,I,Accommodation and Food
+קצב,C,Manufacturing
+קצין ירי,O,Public Administration and Defence
+קרמנולוגיה,M,Professional Scientific and Technical
+קרן,K,Financial and Insurance
+ראדיולוג,Q,Human Health and Social Work
+רואה חשבון,K,Financial and Insurance
+רופא,Q,Human Health and Social Work
+רופא במחלקת ילדים,Q,Human Health and Social Work
+רופא משפחה,Q,Human Health and Social Work
+רופא נשים,Q,Human Health and Social Work
+רופא עור,Q,Human Health and Social Work
+רופא ראומטולוג,Q,Human Health and Social Work
+רופא שיניים,Q,Human Health and Social Work
+רופאה,Q,Human Health and Social Work
+רוקחות,Q,Human Health and Social Work
+רוקחת,Q,Human Health and Social Work
+רוקמת,C,Manufacturing
+ריפוד,C,Manufacturing
+רכזת תעסוקה,N,Administrative and Support
+רמזור,F,Construction
+רפואה אלטרנטיבית,Q,Human Health and Social Work
+רפואת עיניים,Q,Human Health and Social Work
+רפתן בקיבוץ,A,Agriculture Forestry and Fishing
+שוטר,O,Public Administration and Defence
+שוטר אדמניסטרטיבי,O,Public Administration and Defence
+שומר,N,Administrative and Support
+שומר בסופר,N,Administrative and Support
+שופט,O,Public Administration and Defence
+שחקן,R,Arts Entertainment and Recreation
+שיווק,M,Professional Scientific and Technical
+שיווק עוגיות,G,Wholesale and Retail Trade; Repair Services
+שיננית מטפלת,Q,Human Health and Social Work
+שיפוצים,F,Construction
+שיקומי,Q,Human Health and Social Work
+שכיר,N,Administrative and Support
+שמאי מקרקעין,M,Professional Scientific and Technical
+שמירה,N,Administrative and Support
+תומכת בקשיש,Q,Human Health and Social Work
+תופרת,C,Manufacturing
+תחזוקה,N,Administrative and Support
+תחזוקה במשטרה,O,Public Administration and Defence
+תחזוקה העיריית,O,Public Administration and Defence
+תיאטרון,R,Arts Entertainment and Recreation
+תיווך,L,Real Estate
+תיירות,N,Administrative and Support
+תיכון,P,Education
+תיכנות,J,Information and Communication
+תיקון רהיטים,C,Manufacturing
+תעשיה אוורית,C,Manufacturing
+תעשייה אוירית,C,Manufacturing
+תפירה,C,Manufacturing
+תקשורת,J,Information and Communication
+עו"ד,M,Professional Scientific and Technical
+צה"ל,O,Public Administration and Defence
+מרצה בכיר ודר,P,Education
+מינהלן,N,Administrative and Support
+בעל מוסך,G,Wholesale and Retail Trade; Repair Services
+מטפלת בילדים,Q,Human Health and Social Work
+שב"ס,O,Public Administration and Defence
+מורת דרך,P,Education
+נהנג אוטובוס,H,Transportation and Storage
+פועל מפעל,C,Manufacturing
+עצמאית בחול,T,Household and Self-Employed
+הנח"ש,K,Financial and Insurance
+עו"ס,Q,Human Health and Social Work
+סניטר,Q,Human Health and Social Work
+חקלאות מנהל,A,Agriculture Forestry and Fishing
+ניהול קרן,K,Financial and Insurance
+חקלאי אגרונום מנהל,A,Agriculture Forestry and Fishing
+מנהל בבס,O,Public Administration and Defence
+בחקלאות,A,Agriculture Forestry and Fishing
+אחות מתנדבת,Q,Human Health and Social Work
+ע"ד,M,Professional Scientific and Technical
+בנין,F,Construction
+חקלאי בעל משתלה,A,Agriculture Forestry and Fishing
+עצמאי מיזוג אוויר,C,Manufacturing
+עיתונאי,J,Information and Communication
+ניהלה מרפאות חוץ,Q,Human Health and Social Work
+מרצה סמנכל שיווק,M,Professional Scientific and Technical
+נדל"ן,L,Real Estate
+ניהול,N,Administrative and Support
+צ"הל,O,Public Administration and Defence
+בעל חנות,G,Wholesale and Retail Trade; Repair Services
+בעל מכולת,G,Wholesale and Retail Trade; Repair Services
+תחזוקה העיריית כס,O,Public Administration and Defence
+בורסקאי מעבד עורות,C,Manufacturing
+הנדסת יצור,C,Manufacturing
+בעלת חנות,G,Wholesale and Retail Trade; Repair Services
+בעלת מסעדה,I,Accommodation and Food
+מטפלת במטב,Q,Human Health and Social Work
+מנהל ביצוע קידוח,F,Construction
+משרד תיכון,P,Education
+משרד בטחון,O,Public Administration and Defence
+משרד,M,Professional Scientific and Technical
+משרד הבטחון,O,Public Administration and Defence
+משרד הביטחון,O,Public Administration and Defence
+משרד הנהלת חשבונות,M,Professional Scientific and Technical
