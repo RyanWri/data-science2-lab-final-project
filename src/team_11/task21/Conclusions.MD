@@ -8,7 +8,7 @@ The thresholds were set according to the 33rd, 66th and 99th percentile of the d
    2. Logistic (Softmax function at the end)
    3. Resnet
 
-We saw that the MLP performed the best, but the resukts were bad (~33%) for all three models. It could be explained by underfitting - maybe the relationship is too complex for the model to learn based only on Discharging Unit.
+We saw that the MLP performed the best, but the results were bad (~33%) for all three models. It could be explained by underfitting - maybe the relationship is too complex for the model to learn based only on Discharging Unit.
 
 
 ### Conclusions from the Boxplot:
