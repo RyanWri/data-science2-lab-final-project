@@ -182,6 +182,8 @@ def translate_dataframe(dataframe, translation_dict=None):
 
     return translated_df
 
+
+
 if __name__ == '__main__':
     data_dir = os.path.abspath(os.path.join(os.getcwd(), "..","..","data"))
     excel_path = os.path.join(data_dir, "rehospitalization.xlsx")
