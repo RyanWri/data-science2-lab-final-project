@@ -1,0 +1,10 @@
+{
+    "גובה": "height",
+    "משקל": "weight",
+    "תרופות קבועות": "medications",
+    "מצב משפחתי": "marital_status",
+    "גורם משלם": "income_source",
+    "מספר ילדים": "number_of_children",
+    "השכלה": "education",
+    "מחלות כרוניות": "Chronological_illnesses"
+} 

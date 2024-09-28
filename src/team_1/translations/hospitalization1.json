@@ -1,0 +1,9 @@
+{
+    "unitName1": "department_id",
+    "מהיכן המטופל הגיע": "patient_origin",
+    "סוג קבלה": "reception_type",
+    "אבחנות בשחרור": "release_diagnoses",
+    "אבחנות בקבלה": "admission_diagnoses",
+    "ימי אשפוז": "hospitalization_duration",
+    "רופא משחרר-קוד": "release_doctor_code"
+}

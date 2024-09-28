@@ -38,6 +38,7 @@ def extract_hebrew_content(df):
         for value in df[col].dropna():  # Ignore NaN values
             # If the cell value is a string, split by comma and process each value
             if isinstance(value, str):
+                value = clean_text(value)
                 values = value.split(',')
             else:
                 values = [value]
@@ -135,6 +136,12 @@ translator_map = translations = {
     'מתאמת כאב': 'Pain Coordinator'
 }
 
+# Function to clean text: strip whitespace, remove special characters except commas, hyphens, and slashes
+def clean_text(text):
+    # Remove special characters except commas, hyphens, and slashes (retain alphanumeric, whitespace, commas, hyphens, and slashes)
+    cleaned_text = re.sub(r'[^\w\s,/-]', '', text)
+    # Strip leading/trailing whitespace and handle multiple spaces
+    return ' '.join(cleaned_text.split())
 
 def translate_dataframe(dataframe, translation_dict=None):
     """
@@ -153,12 +160,6 @@ def translate_dataframe(dataframe, translation_dict=None):
     # Create a copy of the original dataframe to avoid modifying it
     translated_df = dataframe.copy()
 
-    # Function to clean text: strip whitespace, remove special characters except commas, hyphens, and slashes
-    def clean_text(text):
-        # Remove special characters except commas, hyphens, and slashes (retain alphanumeric, whitespace, commas, hyphens, and slashes)
-        cleaned_text = re.sub(r'[^\w\s,/-]', '', text)
-        # Strip leading/trailing whitespace and handle multiple spaces
-        return ' '.join(cleaned_text.split())
 
 
 
